@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>北国档案 · 阅前声明</title>
+  <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+  <div class="decl">
+    <h1>北国档案</h1>
+    <div class="sub">NORTHERN ARCHIVE · 2009 · 黑龙江 · 阅前声明</div>
+
+    <ul>
+      <li>
+        <strong>一、性质声明</strong><br>
+        本作品为<strong>完全虚构的互动解密档案</strong>。剧情设定在 2009 年的黑龙江省某地级市，所有人物、机构、地点均为虚构。年代背景涉及 1959 年 / 1980 年代 / 1989 年冬，但<strong>不指涉任何具体历史事件或机构</strong>。如有雷同，纯属巧合。
+      </li>
+      <li>
+        <strong>二、心理预警 (CW / TW)</strong><br>
+        本作无 jump scare，无灵异。包含<strong>家庭创伤、政治沉默、亲人离散、个体在历史中的无力感</strong>。不适合 16 岁以下、心境敏感、或历史政治议题触发创伤的玩家。
+      </li>
+      <li>
+        <strong>三、玩法规约</strong><br>
+        ① 浏览器内可玩，<strong>无需任何外链 / 加速器 / 耳机 / 插件</strong><br>
+        ② 推荐 Chrome / Edge 全屏 (F11) 游玩<br>
+        ③ 预计 1.5 - 2.5 小时<br>
+        ④ 包含 <strong>3 主结局 + 2 隐藏结局</strong>
+      </li>
+      <li>
+        <strong>四、结局说明</strong><br>
+        本作所有结局<strong>均不美满</strong>。玩家将面对"你是否要把真相写下来"、"是否要你奶奶在 80 岁那年知道"等真实生活的两难。没有"全部善终"的选项。
+      </li>
+      <li>
+        <strong>五、隐私</strong><br>
+        你的游戏进度<strong>仅存于本机浏览器 localStorage</strong>。清除浏览器数据 = 重新开始。
+      </li>
+    </ul>
+
+    <div class="meta">
+      <span>预计调阅时长：1.5-2.5 小时</span>
+      <span>SYSTEM STATUS: STANDBY · 2009-12</span>
+    </div>
+
+    <div style="text-align:center">
+      <button class="start-btn" id="start-btn">我已悉知并同意</button>
+    </div>
+  </div>
+  <div class="scanlines"></div>
+  <script src="js/core.js"></script>
+  <script>
+    document.getElementById("start-btn").addEventListener("click", () => {
+      NA.go("archive");
+    });
+  </script>
+</body>
+</html>

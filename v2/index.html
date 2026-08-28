@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北一档案 - Northern Archive v2</title>
+<meta name="description" content="ARG 网页解谜游戏 - 2024 升级版">
+<link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+
+<!-- ========== 文字雨背景 ========== -->
+<div class="text-rain-bg">
+  <canvas id="rainCanvas" class="text-rain-canvas"></canvas>
+</div>
+
+<!-- ========== 第 1 阶段: iOS 锁屏 ========== -->
+<div id="iosLock" class="ios-lock">
+  <div class="ios-statusbar">
+    <span>● ● ● ●</span>
+    <span>10:38</span>
+  </div>
+  <div class="ios-time" id="iosTime">10:38</div>
+  <div class="ios-date" id="iosDate">2026年08月28日 星期五</div>
+  <div class="ios-prompt" id="iosPrompt">⚡︎ 输入密码解锁</div>
+  <div class="ios-pin-dots" id="pinDots">
+    <div class="ios-pin-dot"></div>
+    <div class="ios-pin-dot"></div>
+    <div class="ios-pin-dot"></div>
+    <div class="ios-pin-dot"></div>
+  </div>
+  <div class="ios-error" id="iosError"></div>
+  <div class="ios-keypad" id="iosKeypad">
+    <div class="ios-key" data-num="1">1</div>
+    <div class="ios-key" data-num="2">2</div>
+    <div class="ios-key" data-num="3">3</div>
+    <div class="ios-key" data-num="4">4</div>
+    <div class="ios-key" data-num="5">5</div>
+    <div class="ios-key" data-num="6">6</div>
+    <div class="ios-key" data-num="7">7</div>
+    <div class="ios-key" data-num="8">8</div>
+    <div class="ios-key" data-num="9">9</div>
+    <div class="ios-key empty"></div>
+    <div class="ios-key" data-num="0">0</div>
+    <div class="ios-key backspace" id="backspaceKey">⌫</div>
+  </div>
+  <div class="ios-home-btn"></div>
+  <div style="color: #fff; text-align: center; margin-top: 12px; font-size: 12px; opacity: 0.7;">
+    💡 提示: 试试手机号、生日、或找初始密码 <code>0826</code> (北一创建日)
+  </div>
+</div>
+
+<!-- ========== 第 2 阶段: 警告弹窗 ========== -->
+<div id="warningPopup" class="warning-popup" style="display:none;">
+  <div class="warning-popup-content">
+    <h1>⚠️ 游 戏 声 明</h1>
+    <p>本游戏是一个 <b>ARG (侵入现实游戏)</b> 类型的网页解谜</p>
+    <p>在这里你<strong>不扮演任何游戏角色</strong>，你只扮演<strong>你自己</strong></p>
+    <p>游戏中包含需要在现实的社交媒体上寻找的内容</p>
+    <p style="color: #c00; margin-top: 20px;">请确保您已年满 18 周岁</p>
+    <p>游戏时长约 1-2 小时</p>
+    <button onclick="startGame()">继 续 观 看</button>
+  </div>
+</div>
+
+<!-- ========== 第 3 阶段: iOS 桌面 (找到他的情人风格) ========== -->
+<div id="iosDesktop" class="ios-springboard" style="display:none;">
+  <input type="text" class="ios-search" id="iosSearch" placeholder="搜索...">
+  <div class="ios-apps-grid">
+    <div class="ios-app" data-app="wechat">
+      <div class="ios-app-icon bg-wechat">💬</div>
+      <div class="ios-app-name">微信</div>
+    </div>
+    <div class="ios-app" data-app="sms">
+      <div class="ios-app-icon bg-sms">💬</div>
+      <div class="ios-app-name">短信</div>
+    </div>
+    <div class="ios-app" data-app="album">
+      <div class="ios-app-icon bg-album">🖼️</div>
+      <div class="ios-app-name">相册</div>
+    </div>
+    <div class="ios-app" data-app="instagram">
+      <div class="ios-app-icon bg-instagram">📷</div>
+      <div class="ios-app-name">Instagram</div>
+    </div>
+    <div class="ios-app" data-app="phone">
+      <div class="ios-app-icon bg-phone">📞</div>
+      <div class="ios-app-name">电话</div>
+    </div>
+    <div class="ios-app" data-app="email">
+      <div class="ios-app-icon bg-mail">📧</div>
+      <div class="ios-app-name">邮箱</div>
+    </div>
+    <div class="ios-app" data-app="note">
+      <div class="ios-app-icon bg-note">📝</div>
+      <div class="ios-app-name">备忘录</div>
+    </div>
+    <div class="ios-app" data-app="map">
+      <div class="ios-app-icon bg-settings">🗺️</div>
+      <div class="ios-app-name">地图</div>
+    </div>
+  </div>
+  <div class="ios-dock">
+    <div class="ios-app-icon bg-phone" style="width:46px;height:46px;margin:0;">📞</div>
+    <div class="ios-app-icon bg-sms" style="width:46px;height:46px;margin:0;">🌐</div>
+    <div class="ios-app-icon bg-wechat" style="width:46px;height:46px;margin:0;">🎵</div>
+    <div class="ios-app-icon bg-settings" style="width:46px;height:46px;margin:0;">⚙️</div>
+  </div>
+</div>
+
+<!-- ========== 第 4 阶段: macOS 桌面 (灵异新版风格) ========== -->
+<div id="macosDesktop" class="macos-desktop" style="display:none;">
+  <div class="macos-statusbar">
+    <div class="macos-statusbar-left">
+      <span>🍎</span>
+      <span style="font-weight:600">访达</span>
+      <span>编辑</span>
+      <span>显示</span>
+      <span>前往</span>
+      <span>窗口</span>
+      <span>帮助</span>
+    </div>
+    <div class="macos-statusbar-right">
+      <span id="macTime">18:00</span>
+      <span>2026/02/20</span>
+      <span>🔋65%</span>
+      <span>📶</span>
+      <span>🔍</span>
+    </div>
+  </div>
+
+  <!-- 通知 -->
+  <div class="macos-notification" id="notifChat" style="display:none;">
+    <div class="macos-notif-icon">💬</div>
+    <div class="macos-notif-body">
+      <div class="macos-notif-title">微信</div>
+      <div class="macos-notif-content">林昭: 你看到了吗？<br>点击查看对话</div>
+    </div>
+  </div>
+
+  <!-- 桌面图标 -->
+  <div class="macos-desktop-icon" style="top: 60px; left: 40px;" onclick="openMacApp('chat')">
+    <div class="macos-desktop-icon-emoji">💬</div>
+    <div class="macos-desktop-icon-name">聊天软件</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 60px; left: 140px;" onclick="openMacApp('forum')">
+    <div class="macos-desktop-icon-emoji">🗨️</div>
+    <div class="macos-desktop-icon-name">灵异论坛</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 60px; left: 240px;" onclick="openMacApp('notes')">
+    <div class="macos-desktop-icon-emoji">📝</div>
+    <div class="macos-desktop-icon-name">备忘录</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 60px; left: 340px;" onclick="openMacApp('folder')">
+    <div class="macos-desktop-icon-emoji">📁</div>
+    <div class="macos-desktop-icon-name">秘密文件夹</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 180px; left: 40px;" onclick="openMacApp('mail')">
+    <div class="macos-desktop-icon-emoji">📧</div>
+    <div class="macos-desktop-icon-name">邮箱</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 180px; left: 140px;" onclick="openMacApp('browser')">
+    <div class="macos-desktop-icon-emoji">🌐</div>
+    <div class="macos-desktop-icon-name">浏览器</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 180px; left: 240px;" onclick="openMacApp('terminal')">
+    <div class="macos-desktop-icon-emoji">⌨️</div>
+    <div class="macos-desktop-icon-name">终端</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 180px; left: 340px;" onclick="openMacApp('about')">
+    <div class="macos-desktop-icon-emoji">ℹ️</div>
+    <div class="macos-desktop-icon-name">关于本机</div>
+  </div>
+  <div class="macos-desktop-icon" style="top: 300px; left: 40px;" onclick="openMacApp('endings')">
+    <div class="macos-desktop-icon-emoji">🎬</div>
+    <div class="macos-desktop-icon-name">5 个结局</div>
+  </div>
+
+  <!-- 容器: 聊天 -->
+  <div class="macos-window" id="winChat" style="top: 260px; left: 40px; width: 480px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('chat')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">微信 - 林昭</span>
+    </div>
+    <div class="macos-window-body" id="chatBody">
+      <p style="opacity:0.7; text-align:center; padding: 20px;">点击底部按钮开始对话...</p>
+    </div>
+  </div>
+
+  <!-- 容器: 备忘录 -->
+  <div class="macos-window" id="winNotes" style="top: 100px; left: 240px; width: 560px; height: 460px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('notes')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">备忘录 - 林又的个人日记</span>
+    </div>
+    <div class="macos-window-body" style="padding:0;">
+      <div class="macos-notes">
+        <div class="macos-notes-sidebar">
+          <div class="macos-notes-sidebar-item active" data-cat="diary">个人日记 (5)</div>
+          <div class="macos-notes-sidebar-item" data-cat="todo">待办事项 (2)</div>
+          <div class="macos-notes-sidebar-item" data-cat="recycle">回收站 (3)</div>
+        </div>
+        <div class="macos-notes-content" id="notesContent">
+          <div class="macos-notes-entry">
+            <div class="macos-notes-entry-date">半个月前</div>
+            <div class="macos-notes-entry-text">今天又晕倒了，特别是在傍晚。一直做怪梦，每次醒来枕头都是湿的。去医院查不出任何问题，室友说让我去灵异论坛问问...</div>
+          </div>
+          <div class="macos-notes-entry">
+            <div class="macos-notes-entry-date">三个月前</div>
+            <div class="macos-notes-entry-text">今天在路上晕倒，被室友送去医院。没医保，检查开药花了好多钱……好想找妈妈哭，但还是忍住了。妈妈已经很辛苦，妹妹要高三了。</div>
+          </div>
+          <div class="macos-notes-entry">
+            <div class="macos-notes-entry-date">半年前</div>
+            <div class="macos-notes-entry-text">终于租到合适的房子了！室友是南方人，性格超好，居然也喜欢看恐怖故事。而且我们俩都是 03 年出生的，好巧。</div>
+          </div>
+          <div class="macos-notes-entry">
+            <div class="macos-notes-entry-date">九个月前</div>
+            <div class="macos-notes-entry-text">毕业了。工作好难找，文科生真的没出路吗？面试了几家，工资都只有三五千……好想快点赚钱，帮妈妈分担一点。</div>
+          </div>
+          <div class="macos-notes-entry">
+            <div class="macos-notes-entry-date">一年前</div>
+            <div class="macos-notes-entry-text">冬月二十晚上十点。过了学生时代最后一个生日，和朋友吃饭聊天，特别开心。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 容器: 论坛 -->
+  <div class="macos-window" id="winForum" style="top: 100px; left: 80px; width: 600px; height: 480px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('forum')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">灵异论坛 - 浏览器</span>
+    </div>
+    <div class="macos-window-body" style="padding:0;">
+      <div class="macos-forum">
+        <div class="macos-forum-sidebar">
+          <input type="text" class="macos-forum-search" id="forumSearch" placeholder="搜索关键词...">
+          <div class="macos-forum-section">📋 板块</div>
+          <div class="macos-forum-board active" data-board="all">📌 全部</div>
+          <div class="macos-forum-board" data-board="weird">👻 灵异怪谈</div>
+          <div class="macos-forum-board" data-board="dream">💭 怪梦解析</div>
+          <div class="macos-forum-board" data-board="missing">🚨 失踪求助</div>
+          <div class="macos-forum-board" data-board="horror">😱 真实恐怖</div>
+          <div class="macos-forum-section">🔥 热门</div>
+          <div class="macos-forum-board" data-board="hot">TOP 10</div>
+        </div>
+        <div class="macos-forum-main" id="forumMain">
+          <div class="macos-forum-post" onclick="openPost(1)">
+            <div class="macos-forum-post-title">半夜一直听到楼上有脚步声，但是这是顶楼</div>
+            <div class="macos-forum-post-meta">👤 深夜不眠者 · 2025-12-30 02:14 · 👁 12,453 · 💬 87</div>
+            <div class="macos-forum-post-preview">求求大家帮帮我，我已经连续一个月听到楼上有脚步声了，但这是顶楼啊！</div>
+          </div>
+          <div class="macos-forum-post" onclick="openPost(2)">
+            <div class="macos-forum-post-title">失踪的妹妹 - 求助</div>
+            <div class="macos-forum-post-meta">👤 林秋 · 2025-12-29 22:01 · 👁 8,342 · 💬 56</div>
+            <div class="macos-forum-post-preview">我妹妹林又去年突然失联，至今没有任何消息。她最后出现的地方是市中心的奶茶店...</div>
+          </div>
+          <div class="macos-forum-post" onclick="openPost(3)">
+            <div class="macos-forum-post-title">【真实经历】那年我去过的废弃精神病院</div>
+            <div class="macos-forum-post-meta">👤 探险家老张 · 2025-12-28 19:33 · 👁 5,621 · 💬 34</div>
+            <div class="macos-forum-post-preview">我是北一探险队的张哥，今天要给大家讲的是 2019 年我去过的那家废弃精神病院...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 容器: 文件夹 -->
+  <div class="macos-window" id="winFolder" style="top: 120px; left: 200px; width: 480px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('folder')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">📁 秘密文件夹</span>
+    </div>
+    <div class="macos-window-body">
+      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; padding: 16px;">
+        <div class="folder-item" onclick="openFolderItem('pdf')" style="text-align:center; cursor:pointer;">
+          <div style="font-size:48px;">📄</div>
+          <div style="font-size:12px; color:#fff;">经文.pdf</div>
+        </div>
+        <div class="folder-item" onclick="openFolderItem('html')" style="text-align:center; cursor:pointer;">
+          <div style="font-size:48px;">🌐</div>
+          <div style="font-size:12px; color:#fff;">旅游攻略.html</div>
+        </div>
+        <div class="folder-item" onclick="openFolderItem('jpg')" style="text-align:center; cursor:pointer;">
+          <div style="font-size:48px;">🖼️</div>
+          <div style="font-size:12px; color:#fff;">生日礼物.jpg</div>
+        </div>
+        <div class="folder-item" onclick="openFolderItem('note')" style="text-align:center; cursor:pointer;">
+          <div style="font-size:48px;">📝</div>
+          <div style="font-size:12px; color:#fff;">密码提示.txt</div>
+        </div>
+        <div class="folder-item" onclick="openFolderItem('video')" style="text-align:center; cursor:pointer;">
+          <div style="font-size:48px;">🎥</div>
+          <div style="font-size:12px; color:#fff;">毕业典礼.mp4</div>
+        </div>
+        <div class="folder-item" onclick="openFolderItem('audio')" style="text-align:center; cursor:pointer;">
+          <div style="font-size:48px;">🎵</div>
+          <div style="font-size:12px; color:#fff;">给我妹妹的歌.mp3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 密码弹窗 -->
+  <div class="macos-pw-modal" id="folderPwModal">
+    <div class="macos-pw-dialog">
+      <div class="macos-pw-title">🔒 请输入密码</div>
+      <div class="macos-pw-desc">此文件夹受密码保护，请输入密码以访问</div>
+      <input type="password" class="macos-pw-input" id="folderPwInput" placeholder="请输入密码...">
+      <div class="macos-pw-actions">
+        <button onclick="closeFolderPw()">取消</button>
+        <button class="primary" onclick="submitFolderPw()">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 容器: 邮箱 -->
+  <div class="macos-window" id="winMail" style="top: 100px; left: 360px; width: 520px; height: 420px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('mail')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">📧 收件箱 - 5 封未读</span>
+    </div>
+    <div class="macos-window-body" style="padding:0;">
+      <div class="email-list">
+        <div class="email-item unread" onclick="openEmail(1)">
+          <div class="email-item-icon">📧</div>
+          <div class="email-item-from">林昭</div>
+          <div class="email-item-subject">急！我哥的事情，真的只能靠你了！！</div>
+          <div class="email-item-time">22:47</div>
+        </div>
+        <div class="email-item unread" onclick="openEmail(2)">
+          <div class="email-item-icon">📧</div>
+          <div class="email-item-from">未知发件人</div>
+          <div class="email-item-subject">高薪委托 - 数据恢复项目</div>
+          <div class="email-item-time">14:23</div>
+        </div>
+        <div class="email-item unread" onclick="openEmail(3)">
+          <div class="email-item-icon">📧</div>
+          <div class="email-item-from">网安赛组委会</div>
+          <div class="email-item-subject">恭喜您获得 2025 全国网络安全大赛一等奖</div>
+          <div class="email-item-time">09:15</div>
+        </div>
+        <div class="email-item unread" onclick="openEmail(4)">
+          <div class="email-item-icon">📧</div>
+          <div class="email-item-from">计算机社团</div>
+          <div class="email-item-subject">本周社团活动 - 逆向工程实战</div>
+          <div class="email-item-time">16:42</div>
+        </div>
+        <div class="email-item unread" onclick="openEmail(5)">
+          <div class="email-item-icon">📧</div>
+          <div class="email-item-from">系统</div>
+          <div class="email-item-subject">您的账号"404"已被创建</div>
+          <div class="email-item-time">12:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 容器: 终端 -->
+  <div class="macos-window" id="winTerminal" style="top: 60px; left: 500px; width: 480px; height: 320px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('terminal')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">⌨️ 终端 - bash</span>
+    </div>
+    <div class="macos-window-body" style="background:#000; color:#0f0; font-family:monospace; font-size:12px; line-height:1.4;">
+      <div id="terminalOut">Last login: Fri Aug 28 03:00:00 on ttys000<br>admin@Mac ~ %</div>
+    </div>
+  </div>
+
+  <!-- 5 结局选择面板 -->
+  <div class="macos-window" id="winEndings" style="top: 50px; left: 200px; width: 600px; display:none;">
+    <div class="macos-window-titlebar">
+      <span class="macos-btn macos-btn-close" onclick="closeMacApp('endings')"></span>
+      <span class="macos-btn macos-btn-min"></span>
+      <span class="macos-btn macos-btn-max"></span>
+      <span class="macos-window-title">🎬 选择你的结局</span>
+    </div>
+    <div class="macos-window-body">
+      <p style="margin: 8px 0; opacity:0.9;">你解开了所有 ARG 密码 (wyynlzdq) 并查看了所有线索。<br>现在你可以选择你的结局：</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+        <a href="end_A_luntan.html" class="btn" style="background:#4caf50;">🌅 A 真相大白</a>
+        <a href="end_B_shengCheng.html" class="btn" style="background:#2196f3;">🤝 B 重新开始</a>
+        <a href="end_C_jiaBei.html" class="btn" style="background:#00bcd4;">👻 C 假死真相</a>
+        <a href="end_D_chenMo.html" class="btn" style="background:#607d8b;">😶 D 沉默</a>
+        <a href="end_E_naiNai.html" class="btn" style="background:#ff9800; grid-column: 1 / -1;">👵 E 奶奶的礼物 (隐藏)</a>
+      </div>
+      <p style="margin-top: 16px; opacity: 0.7; font-size: 12px;">提示: 完成所有线索后才能看到所有结局</p>
+    </div>
+  </div>
+
+  <!-- Dock -->
+  <div class="macos-dock">
+    <div class="macos-dock-item" onclick="openMacApp('chat')" style="background:linear-gradient(135deg,#1aad19,#07c160);">💬</div>
+    <div class="macos-dock-item" onclick="openMacApp('forum')" style="background:#2c2c2e;">🗨️</div>
+    <div class="macos-dock-item" onclick="openMacApp('notes')" style="background:linear-gradient(135deg,#ffd23f,#ff9500);">📝</div>
+    <div class="macos-dock-item" onclick="openMacApp('folder')" style="background:linear-gradient(135deg,#4eb6e9,#007aff);">📁</div>
+    <div class="macos-dock-item" onclick="openMacApp('mail')" style="background:linear-gradient(135deg,#007aff,#0055aa);">📧</div>
+    <div class="macos-dock-item" onclick="openMacApp('browser')" style="background:linear-gradient(135deg,#fff,#ddd);">🌐</div>
+  </div>
+</div>
+
+<!-- 通用模态 -->
+<div class="ios-modal-bg" id="genericModal">
+  <div class="ios-modal">
+    <div class="ios-modal-title" id="modalTitle">提示</div>
+    <div class="ios-modal-content" id="modalContent"></div>
+    <div class="ios-modal-actions">
+      <button onclick="closeModal()">确认</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/core.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>抉择</title>
+  <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+  <div class="nav-bar">
+    <span>📋 你已查阅 6/6 个渠道 · 收集到 6 份证据</span>
+    <a href="index.html">⏻ 退出</a>
+  </div>
+
+  <div class="container">
+    <div class="channel" style="border-left: 4px solid #c0392b;">
+      <h2>2009 年 12 月 22 日 · 晚 10 时 · 出租屋</h2>
+      <p>你回到出租屋，桌上是 3 份打印出来的档案：<br>
+      - 1991 年复查结论（处罚撤销）<br>
+      - 1995 年周德厚失踪公告（家属主动销案）<br>
+      - 1997 年户籍迁移涂黑记录</p>
+
+      <p>你想起白天在档案馆，工作人员临走时说：<br>
+      <em style="color: #6b4f1d;">"你爷爷这一户啊……<strong>你别查了，这是为你好</strong>。"</em></p>
+
+      <p>也想起 QQ 群里同学 A 突然发的：<br>
+      <em style="color: #6b4f1d;">"<strong>他们说 03 年搬迁工程队在北山屯西头挖出过……</strong>"</em><br>
+      被管理员打断了。</p>
+
+      <p>也想起奶奶 2008 年那封未寄出的信：<br>
+      <em style="color: #6b4f1d;">"<strong>旧衣柜第三层。你自己看。</strong>"</em><br>
+      你还没去看。</p>
+
+      <p style="font-weight: bold; margin-top: 20px; color: #6b4f1d;">
+        还有 7 天就是你的毕业论文答辩。<br>
+        你的论文题目是《1959-1961 年东北某市工业人口变动初探》。<br>
+        你要不要把你查到的写进去？
+      </p>
+    </div>
+
+    <div class="search-result">
+      <h3>📌 你现在的 4 个选择</h3>
+      <p style="color: #888; font-size: 12px; margin-bottom: 16px;">没有"全部善终"的选项。每个选择都有不可知的代价。</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="channel" style="border-left: 4px solid #6b4f1d; cursor: pointer;" onclick="goChoice('A')">
+          <h3 style="font-size: 14px;">📤 A. 写进毕业论文</h3>
+          <p style="font-size: 12px; color: #888;">你把所有发现匿名化处理后写进论文明天提交。</p>
+          <p style="font-size: 11px; color: #c0392b;">后果：未知。可能是"为你好"的人。可能是答辩委员会的某位评审。</p>
+        </div>
+
+        <div class="channel" style="border-left: 4px solid #c0392b; cursor: pointer;" onclick="goChoice('B')">
+          <h3 style="font-size: 14px;">🔥 B. 全部烧掉</h3>
+          <p style="font-size: 12px; color: #888;">你不应该查到这些。明天回学校装作什么都没发生。</p>
+          <p style="font-size: 11px; color: #c0392b;">后果：你的儿子 2049 年还会再查一次。</p>
+        </div>
+
+        <div class="channel" style="border-left: 4px solid #6b4f1d; cursor: pointer;" onclick="goChoice('C')">
+          <h3 style="font-size: 14px;">🌐 C. 加密上传境外</h3>
+          <p style="font-size: 12px; color: #888;">扫描全部文件，PGP 加密后上传境外服务器。</p>
+          <p style="font-size: 11px; color: #c0392b;">后果：警察下周会"请你去喝茶"。</p>
+        </div>
+
+        <div class="channel" style="border-left: 4px solid #6b4f1d; cursor: pointer;" onclick="goChoice('D')">
+          <h3 style="font-size: 14px;">🤐 D. 假装什么都没发现</h3>
+          <p style="font-size: 12px; color: #888;">你明天毕业。毕业后去深圳，去 BAT，去外交部，去当个普通人。</p>
+          <p style="font-size: 11px; color: #c0392b;">后果：你的小孩 2049 年会查到同一些东西，然后他 / 她会恨你。</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <p style="font-size: 12px; color: #888;">或者你还可以：</p>
+        <button class="archive-btn" style="width: 320px;" onclick="goChoice('E')">✉ 回家告诉奶奶（这封未寄出的信应该让她先看）</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="scanlines"></div>
+  <script src="js/core.js"></script>
+  <script>
+    function goChoice(opt) {
+      NA.saveProgress("choose_" + opt);
+      NA.addEvidence("choice_" + opt);
+      const routes = { A: "endA", B: "endB", C: "endC", D: "endD", E: "endE" };
+      NA.go(routes[opt]);
+    }
+  </script>
+</body>
+</html>

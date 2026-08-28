@@ -1,0 +1,10 @@
+{
+  "name": "northern-archive",
+  "version": "1.0.0",
+  "description": "北国档案 / Northern Archive - 中文互动叙事解谜（2009 黑龙江档案馆）",
+  "scripts": {
+    "test": "node test/walkthrough.mjs",
+    "serve": "python -m http.server 8000"
+  },
+  "license": "personal-noncommercial"
+}

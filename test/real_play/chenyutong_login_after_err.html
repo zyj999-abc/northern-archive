@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 秉烛夜谈</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #E6F0FA;
+            font-family: "SimSun", "宋体", "Microsoft YaHei", serif;
+            font-size: 12px;
+            padding: 50px 0;
+        }
+        .login-container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border: 1px solid #AAAAAA;
+            border-top: 3px solid #3366CC;
+            padding: 30px;
+        }
+        .login-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #003366;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .login-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #CCCCCC;
+            font-family: inherit;
+            font-size: 12px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 8px;
+            background: #3366CC;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .login-btn:hover {
+            background: #254e9e;
+        }
+        .error-msg {
+            color: #CC0000;
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #003366;
+            text-decoration: none;
+        }
+        .hint {
+            background: #F5F5F5;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 11px;
+            color: #666;
+            border: 1px solid #EEE;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="login-title">秉烛夜谈 · 登录</div>
+    <form class="login-form" onsubmit="event.preventDefault(); login();">
+        <label>用户名</label>
+        <input type="text" id="username" placeholder="请输入用户名" value="">
+        <label>密码</label>
+        <input type="password" id="password" placeholder="请输入密码" value="">
+        <button type="submit" class="login-btn">登录</button>
+        <div class="error-msg" id="errorMsg" style="display: block;">账号或密码错误，请重试</div>
+    </form>
+    <div class="back-link">
+        <a href="javascript:history.back();">← 返回上一页</a>
+    </div>
+</div>
+
+<script>
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var errorMsg = document.getElementById('errorMsg');
+        
+        var validAccounts = {
+            '啾啾': '920916',
+            '下雨天': '435637'
+        };
+        
+        if (validAccounts[username] && validAccounts[username] === password) {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('username', username);
+            
+            var urlParams = new URLSearchParams(window.location.search);
+            var redirectUrl = urlParams.get('redirect');
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                window.location.href = 'index.html';
+            }
+        } else {
+            errorMsg.style.display = 'block';
+        }
+    }
+</script>
+
+</body></html>

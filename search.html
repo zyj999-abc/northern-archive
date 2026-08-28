@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>档案馆 · 检索结果 - 李泽宇</title>
+  <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+  <div class="nav-bar">
+    <span>🔍 检索结果：<strong id="query">李泽宇爷爷 / 1959-1989</strong></span>
+    <a href="index.html">⏻ 退出</a>
+  </div>
+
+  <div class="container">
+    <div class="search-result" style="border-left: 4px solid #c0392b; background: #fef5e7;">
+      <div class="meta">
+        <span>📋 馆藏查询系统</span>
+        <span>2009-12-15 14:23</span>
+      </div>
+      <h3>⚠ 查询提示：您所要查询的部分档案已于 2003-08-12 销毁</h3>
+      <p>您查询的"<strong>1959 年 12 月 - 1960 年 04 月</strong>"时间段内<strong>共 12 份</strong>该地区户籍档案，已于 <strong>2003-08-12</strong> 由本馆第 <strong>2003-12-04</strong> 号文批准销毁。</p>
+      <p>销毁原因：保管期限届满 + 数字化迁移完成。</p>
+      <p style="color:#c0392b; font-weight:bold; margin-top:8px;">本馆无更早期的备份。查询结果：<strong>0 条</strong>。</p>
+    </div>
+
+    <div class="search-result">
+      <div class="meta">
+        <span>📁 相关交叉记录</span>
+        <span>系统自动联想</span>
+      </div>
+      <h3>6 条相关渠道可供继续查询</h3>
+      <p>虽然您直接查询的档案已销毁，但本馆的其他渠道可能存有您关心的相关信息。点击下方按钮进入各渠道：</p>
+      <div class="actions" style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button onclick="enter('channel1')">📰 黑河日报 (1989-2009) 扫描件</button>
+        <button onclick="enter('channel2')">🆔 户籍档案 (1980-2000) 数字化</button>
+        <button onclick="enter('channel3')">🏭 第135厂 职工档案 (1958-1998)</button>
+        <button onclick="enter('channel4')">📦 奶奶家遗物 (旧 Kindle 扫描)</button>
+        <button onclick="enter('channel5')">💬 19 中校友群 (QQ 2008-2009)</button>
+        <button onclick="enter('channel6')">📋 寻人 / 失踪人口公告</button>
+      </div>
+    </div>
+
+    <div class="search-result" style="margin-top: 24px; border-left: 4px solid #6b4f1d;">
+      <h3>📌 工作人员提示</h3>
+      <p style="color: #6b4f1d;">系统记录显示您 14:08 调阅过《1989 年 12 月 - 1990 年 02 月 黑河日报》。</p>
+      <p>建议继续查阅下列渠道。您已查询 <strong id="cnt">0</strong> / 6 个渠道。</p>
+    </div>
+  </div>
+
+  <div class="scanlines"></div>
+  <script src="js/core.js"></script>
+  <script>
+    function enter(ch) {
+      NA.addEvidence("ch_" + ch);
+      NA.saveProgress("search_" + ch);
+      NA.go(ch);
+    }
+    // 显示已查渠道
+    const ev = NA.getEvidence();
+    document.getElementById("cnt").textContent = ev.length;
+  </script>
+</body>
+</html>
