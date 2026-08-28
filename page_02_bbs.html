@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>鹤岗故人 BBS - 2049年的一封信</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23f5f5f0'/%3E%3Ctext x='50' y='78' font-size='72' font-weight='bold' text-anchor='middle' fill='%231a1a1a' font-family='KaiTi,serif'%3E信%3C/text%3E%3C/svg%3E">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "SimSun", "宋体", "Microsoft YaHei", sans-serif;
+  background: #ffffe8;
+  color: #000;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.banner {
+  background: #4a76a8;
+  color: #fff;
+  padding: 12px 20px;
+  border-bottom: 3px solid #2e5894;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner-title {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+.banner-meta {
+  font-size: 12px;
+  opacity: 0.9;
+}
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.nav {
+  background: #ece9d8;
+  border: 1px solid #919b9c;
+  border-top: none;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+.nav a { color: #06c; margin-right: 16px; text-decoration: none; }
+.nav a:hover { text-decoration: underline; }
+.tagline {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin: 16px 0;
+  font-style: italic;
+}
+.section-title {
+  background: linear-gradient(to right, #4a76a8 0%, transparent 100%);
+  color: #fff;
+  padding: 6px 16px;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  border: 1px solid #2e5894;
+}
+.thread {
+  border: 1px solid #c0c0c0;
+  background: #fff;
+  margin-bottom: 8px;
+  padding: 0;
+}
+.thread-head {
+  background: #f4f4f0;
+  border-bottom: 1px solid #d0d0c0;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.thread-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #06c;
+  padding: 12px 16px 4px;
+  text-decoration: none;
+  display: block;
+}
+.thread-title:hover { text-decoration: underline; }
+.thread-meta {
+  color: #888;
+  font-size: 12px;
+  padding: 0 16px 12px;
+  border-bottom: 1px dashed #ddd;
+}
+.thread-preview {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #333;
+  line-height: 1.7;
+}
+.sticky {
+  border-left: 4px solid #c00;
+}
+.pin {
+  background: #c00;
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 6px;
+  margin-right: 4px;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+.sidebar {
+  background: #f4f4f0;
+  border: 1px solid #c0c0c0;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.sidebar h3 {
+  font-size: 13px;
+  color: #06c;
+  border-bottom: 1px solid #d0d0c0;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+.stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+.online {
+  color: #c00;
+  font-weight: bold;
+}
+.online-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: #0c0;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.notice {
+  background: #fff8e0;
+  border: 1px solid #f0d870;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6a5500;
+}
+.notice strong { color: #c00; }
+.search-box {
+  background: #fff;
+  border: 1px solid #c0c0c0;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.search-box input {
+  border: 1px solid #999;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  width: 320px;
+}
+.search-box button {
+  background: #4a76a8;
+  color: #fff;
+  border: 1px solid #2e5894;
+  padding: 4px 16px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.footer {
+  background: #4a76a8;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  margin-top: 30px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 16px;
+  margin-top: 16px;
+}
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+.legend {
+  background: #fafafa;
+  border: 1px solid #e0e0d0;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #555;
+}
+.legend h4 { color: #06c; font-size: 13px; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <div class="banner-title">鹤岗故人</div>
+  <div class="banner-meta">
+    <span><span class="online-dot"></span>在线 <span class="online">3</span> 人</span>
+    &nbsp;|&nbsp; 历史最高 1,247 (2001-08-17)
+    &nbsp;|&nbsp; 建于 1999 年 4 月
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="nav">
+    <a href="page_02_bbs.html"><b>首页</b></a>
+    <a href="page_03_bbs_board_hegang.html">鹤岗版</a>
+    <a href="page_04_bbs_board_lubei.html">萝北版</a>
+    <a href="page_05_bfs_archive.html">档案馆</a>
+    <a href="page_06_underground.html">🔒 私人版 (2000+)</a>
+    <a href="page_07_search.html">🔍 搜索</a>
+    &nbsp;&nbsp; <span style="float:right;"><a href="page_00_index.html">← 退出登录 (访客模式)</a></span>
+  </div>
+
+  <p class="tagline">— 黑龙江鹤岗市 · 1999 年成立的本地 BBS · 为鹤岗人留住所有老朋友 —</p>
+
+  <div class="notice">
+    📢 <strong>站务公告 (2007-12-31)</strong>:
+    本站自 2008 年 1 月 1 日起转为只读, 停止新用户注册. 感谢所有鹤岗朋友 9 年来的陪伴.
+    站长: <em>老鹤</em> · 副站长: <em>小雪</em> · 技术: <em>三哥</em>
+  </div>
+
+  <div class="search-box">
+    <form onsubmit="event.preventDefault(); window.location.href='page_07_search.html?q='+encodeURIComponent(this.q.value);">
+      <input type="text" name="q" placeholder="搜索帖子、用户名、关键词 (鹤北/鹤岗/寻人/老林)" autofocus>
+      <button type="submit">搜索</button>
+    </form>
+  </div>
+
+  <div class="layout">
+    <div>
+      <div class="section-title">📌 站务公告 (置顶)</div>
+      <div class="thread sticky">
+        <div class="thread-head">
+          <span><b>📌 公告</b> · 鹤岗故人 8 周年站庆, 老朋友进来报个到吧</span>
+          <span>老鹤 | 2007-04-12</span>
+        </div>
+        <a href="#" class="thread-title">[置顶] 8 周年了, 你还记得我们吗?</a>
+        <div class="thread-meta">
+          <span>作者: <b>老鹤</b> (站长) | 回复: 234 | 浏览: 12,847</span>
+        </div>
+        <div class="thread-preview">
+          8 年前, 1999 年 4 月 1 日, 鹤岗市政府门口的"鹤岗故人" BBS 正式上线. 当时注册用户只有 7 个人. 8 年后, 我们有 7,832 个鹤岗朋友注册.
+          那年我 22 岁, 在鹤岗一中当语文老师. 三哥是我同事, 他帮我搭的 BBS. 小雪是第一个注册用户, 她当时在萝北县一中读高三.<br>
+          老朋友们, 你们都还在吗? 进来报个到吧.
+        </div>
+      </div>
+
+      <div class="thread sticky">
+        <div class="thread-head">
+          <span><b>📌 公告</b> · 2008 年 1 月起本站只读</span>
+          <span>老鹤 | 2007-12-31</span>
+        </div>
+        <a href="#" class="thread-title">[置顶] 8 年, 一段结束</a>
+        <div class="thread-meta">
+          <span>作者: <b>老鹤</b> (站长) | 回复: 187 | 浏览: 9,432</span>
+        </div>
+        <div class="thread-preview">
+          各位鹤岗朋友, 我做了一个很艰难的决定. 从 2008 年 1 月 1 日起, 鹤岗故人 BBS 转为只读, 停止新用户注册和新帖发布.
+          不是因为没有维护, 是因为我已经 30 岁了, 我要去南方工作了, 没有人接手.<br>
+          但所有帖子都会永远保留. 等我老了, 我会回来, 把这些故事给儿子看.
+        </div>
+      </div>
+
+      <div class="section-title">📋 鹤岗版 - 最新主题</div>
+      <div class="thread">
+        <div class="thread-head">
+          <span>鹤岗 · 民生</span>
+          <span>老鹤 | 2007-12-25</span>
+        </div>
+        <a href="page_03_bbs_board_hegang.html" class="thread-title">鹤岗的雪, 一年比一年大了</a>
+        <div class="thread-meta">
+          <span>作者: <b>老鹤</b> | 回复: 67 | 浏览: 4,213</span>
+        </div>
+        <div class="thread-preview">
+          昨晚下了一夜的雪, 早上出门, 雪到膝盖. 早上 6 点出门买菜, 路上一个人都没有. 就听见自己的脚步声.
+          鹤岗的冬天就是这样, 一年比一年冷, 一年比一年安静. 不知道 30 年后, 这个城市还有没有人.
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="thread-head">
+          <span>鹤岗 · 回忆</span>
+          <span>寒江独钓 | 2007-11-12</span>
+        </div>
+        <a href="page_08_thread_cold_winter.html" class="thread-title"><span class="pin">精华</span>1999 年那个冬天, 我在鹤北</a>
+        <div class="thread-meta">
+          <span>作者: <b>寒江独钓</b> | 回复: 89 | 浏览: 6,738</span>
+        </div>
+        <div class="thread-preview">
+          刚才老鹤发的帖子, 让我又想起 1999 年. 那个冬天我刚到鹤岗, 在萝北县鹤北镇派出所当警察. 那时候, 鹤岗没这么安静. 大家都很忙.
+          1999 年 12 月 31 日那天晚上, 雪下得特别大, 我和我的搭档老林去执行一个任务. 那个任务, 我后来 8 年都没跟任何人说过.
+          ...
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="thread-head">
+          <span>鹤岗 · 求助</span>
+          <span>寻人者 | 2006-08-17</span>
+        </div>
+        <a href="page_09_thread_search_linxun.html" class="thread-title"><span class="pin">置顶</span>寻人: 李守正, 25 年前鹤北镇刑警</a>
+        <div class="thread-meta">
+          <span>作者: <b>寻人者</b> | 回复: 14 | 浏览: 1,243</span>
+        </div>
+        <div class="thread-preview">
+          各位鹤岗朋友, 我是 1971 年生人. 1999 年在鹤北镇当刑警, 我的搭档老林(林德厚) 1999 年 12 月 31 日执行任务时失踪.
+          县里说"因公殉职", 但我从来没找到他的遗体. 我也因为那次任务负伤, 2009 年办了病退.
+          ...
+        </div>
+      </div>
+
+      <div class="section-title">📋 萝北版 - 最新主题</div>
+      <div class="thread">
+        <div class="thread-head">
+          <span>萝北 · 乡愁</span>
+          <span>萝北阿婆 | 2007-09-15</span>
+        </div>
+        <a href="page_04_bbs_board_lubei.html" class="thread-title">萝北 90 年代, 你还记得白桦林吗</a>
+        <div class="thread-meta">
+          <span>作者: <b>萝北阿婆</b> | 回复: 134 | 浏览: 7,892</span>
+        </div>
+        <div class="thread-preview">
+          我是 1952 年生人, 在萝北县鹤北镇住了 50 多年. 90 年代, 鹤北镇后面那片白桦林, 是我们小孩最喜欢去的地方.
+          白桦林里有条小溪, 溪边有一户人家, 大家都叫她"白桦嫂", 她一个人住, 70 年代从哈尔滨来的, 没结过婚.
+          她每年冬天都给镇上每家每户送白桦茸, 一种长在白桦树上的菌, 煮汤特别鲜. 但她自己从来不吃.
+          1998 年冬天, 她突然不见了. 听说是搬走了, 也听说是出事了. 镇上没人知道.
+        </div>
+      </div>
+
+      <div class="section-title">🗂️ 档案馆 (历史主题)</div>
+      <div class="thread">
+        <div class="thread-head">
+          <span>档案 · 1999</span>
+          <span>萝北县志办 | 2003-04-12</span>
+        </div>
+        <a href="page_05_bfs_archive.html" class="thread-title">萝北县 1999 年大事记 (节选)</a>
+        <div class="thread-meta">
+          <span>作者: <b>萝北县志办</b> | 回复: 23 | 浏览: 2,341</span>
+        </div>
+        <div class="thread-preview">
+          1999 年 12 月 31 日: 县里组织对鹤北镇后山进行安全检查, 由县公安局刑警队李守正同志带队. 在检查过程中, 刑警队林德厚同志因公负伤, 后因伤势过重死亡. 县里追授林德厚同志"优秀人民警察"称号.
+          2000 年 1 月 1 日: 因公负伤刑警李守正同志送哈尔滨治疗.
+          ...
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar">
+        <h3>📊 本站数据</h3>
+        <div>注册用户: <b>7,832</b></div>
+        <div>主题数: <b>14,261</b></div>
+        <div>帖子数: <b>183,492</b></div>
+        <div>最后更新: 2007-12-31</div>
+        <div>在线: <b>3</b> 人</div>
+      </div>
+
+      <div class="sidebar">
+        <h3>🏆 精华帖 TOP 5</h3>
+        <div><a href="page_08_thread_cold_winter.html">1. 1999 年那个冬天, 我在鹤北</a></div>
+        <div><a href="#">2. 萝北老照片 (1985-1995)</a></div>
+        <div><a href="page_09_thread_search_linxun.html">3. 寻人: 李守正</a></div>
+        <div><a href="#">4. 鹤岗一中 99 届同学录</a></div>
+        <div><a href="#">5. 萝北阿婆的 50 年</a></div>
+      </div>
+
+      <div class="sidebar">
+        <h3>👥 在线用户</h3>
+        <div>老鹤 (站长)</div>
+        <div>三哥 (技术)</div>
+        <div>访客 92.168.*.*</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <h4>💡 玩法提示</h4>
+    1. <strong>你爸爸的网名是 "寒江独钓"</strong>, 他在 2007-11-12 发了精华帖.<br>
+    2. 1999 年 12 月 31 日的悲剧, 他是当事人. 点开他的精华帖, 也许能找到他留下的线索.<br>
+    3. 2006 年有个叫"寻人者"的人在找"李守正", 也许他也知道一些事.<br>
+    4. <strong>5 个密码的入口都在这个 BBS 里</strong>. 仔细看每一行.
+  </div>
+
+</div>
+
+<div class="footer">© 1999-2007 鹤岗故人 BBS · 站长: 老鹤 · 技术: 三哥 · 此站为只读历史存档</div>
+
+</body>
+</html>

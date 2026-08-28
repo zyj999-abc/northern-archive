@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>搜索 - 鹤岗故人</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23f5f5f0'/%3E%3Ctext x='50' y='78' font-size='72' font-weight='bold' text-anchor='middle' fill='%231a1a1a' font-family='KaiTi,serif'%3E信%3C/text%3E%3C/svg%3E">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "SimSun", "宋体", "Microsoft YaHei", sans-serif; background: #ffffe8; color: #000; font-size: 13px; line-height: 1.6; }
+.banner { background: #4a76a8; color: #fff; padding: 12px 20px; border-bottom: 3px solid #2e5894; }
+.banner-title { font-size: 22px; font-weight: bold; letter-spacing: 4px; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 20px; }
+.nav { background: #ece9d8; border: 1px solid #919b9c; padding: 8px 16px; font-size: 13px; margin-bottom: 16px; }
+.nav a { color: #06c; margin-right: 16px; text-decoration: none; }
+.search-bar { background: #fff; border: 1px solid #c0c0c0; padding: 20px; text-align: center; margin-bottom: 16px; }
+.search-bar input { width: 400px; padding: 6px 12px; font-size: 14px; border: 1px solid #999; }
+.search-bar button { background: #4a76a8; color: #fff; border: 1px solid #2e5894; padding: 6px 16px; cursor: pointer; margin-left: 8px; }
+.result-item { background: #fff; border: 1px solid #c0c0c0; padding: 12px 16px; margin-bottom: 8px; }
+.result-title { color: #06c; font-size: 14px; font-weight: bold; text-decoration: none; display: block; margin-bottom: 4px; }
+.result-meta { color: #888; font-size: 12px; margin-bottom: 4px; }
+.result-preview { color: #444; font-size: 13px; line-height: 1.6; }
+.highlight { background: #fff3a0; padding: 0 4px; }
+.footer { background: #4a76a8; color: #fff; text-align: center; padding: 12px; font-size: 12px; margin-top: 30px; }
+.legend { background: #fafafa; border: 1px solid #e0e0d0; padding: 12px 16px; margin-top: 20px; font-size: 12px; line-height: 1.7; color: #555; }
+</style>
+</head>
+<body>
+
+<div class="banner"><div class="banner-title">鹤岗故人 · 搜索</div></div>
+
+<div class="wrap">
+  <div class="nav">
+    <a href="page_02_bbs.html">首页</a> » <a href="#">搜索</a>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="qInput" placeholder="搜索 鹤岗故人 BBS (推荐: 鹤北 / 寒江独钓 / 寻人者 / 1973)" autofocus>
+    <button onclick="doSearch()">搜索</button>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="footer">© 1999-2007 鹤岗故人 BBS · 搜索由本站全文索引提供</div>
+
+  <div class="legend">
+    <strong>💡 玩法提示</strong>: 试试这些关键词 - <strong>鹤北 / 寒江独钓 / 寻人者 / 白桦林 / 1999-12-31 / 林德厚 / 1973 / 北山工事</strong>
+  </div>
+</div>
+
+<script>
+const DATA = [
+  { id: 'thread-cold-winter', title: '1999 年那个冬天, 我在鹤北', author: '寒江独钓', time: '2007-11-12', board: '鹤岗版', url: 'page_08_thread_cold_winter.html', keywords: ['寒江独钓', '鹤北', '1999', '1999 年', '老林', '林德厚', '白桦', '白桦林', '北山工事', '12 月 31 日', '1999-12-31', '地下工事', '1999 年 12 月 31 日', '鹤北镇', '李守正', '寻子', '12.31', '12-31'] },
+  { id: 'thread-search-linxun', title: '寻人: 李守正, 25 年前鹤北镇刑警', author: '寻人者', time: '2006-08-17', board: '鹤岗版', url: 'page_09_thread_search_linxun.html', keywords: ['寻人者', '李守正', '鹤北', '1973', '白桦林', '北山工事', '林德厚', '老林', '1999', '1999-12-31', '12 月 31 日', '8 棵白桦', '白桦树', '白桦嫂', '萝北', '寻人', '因公殉职', '县里', '火灾'] },
+  { id: 'board-hegang', title: '鹤岗版 - 鹤岗, 1999-2007', author: '老鹤', time: '1999-2007', board: '鹤岗版', url: 'page_03_bbs_board_hegang.html', keywords: ['鹤岗', '1999', '12 月 31 日', '1999-12-31', '12.31'] },
+  { id: 'board-lubei', title: '萝北版 - 萝北, 1999-2007', author: '萝北阿婆', time: '1999-2007', board: '萝北版', url: 'page_04_bbs_board_lubei.html', keywords: ['萝北', '白桦', '白桦林', '白桦嫂', '鹤北', '1973', '知青', '1998', '8 棵白桦', '8 棵白桦树', '白桦树', '8 棵'] },
+  { id: 'archive-1973', title: '萝北县 1973 年 8 月 17 日 知青安置情况汇报', author: '萝北县档案馆', time: '1973-09-01', board: '档案馆', url: 'page_05_bfs_archive.html#1973', keywords: ['1973', '8 月 17 日', '1973-08-17', '1973-8-17', '知青', '白桦林', '白桦', '萝北', '病退', '意外身亡', '8 人', '8 个', '哈尔滨', '上海', '安置', '县里'] },
+  { id: 'archive-1999', title: '萝北县 1999 年 12 月 31 日 鹤北镇后山 "火灾" 调查报告 (机密)', author: '萝北县档案馆', time: '2000-01-05', board: '档案馆', url: 'page_05_bfs_archive.html#1999', keywords: ['1999', '12 月 31 日', '1999-12-31', '12.31', '鹤北', '后山', '火灾', '调查报告', '机密', '因公殉职', '林德厚', '李守正', '三等功', '县里', '萝北'] },
+  { id: 'archive-2009', title: '萝北县 2009 年 10 月 7 日 鹤北镇后山 火灾后续处理报告', author: '萝北县档案馆', time: '2009-10-08', board: '档案馆', url: 'page_05_bfs_archive.html#2009', keywords: ['2009', '10 月 7 日', '2009-10-07', '10.7', '鹤北', '后山', '李守正', '县里', '白桦', '白桦树', '8 棵白桦', '8 棵白桦树', '8 棵'] },
+  { id: 'archive-note', title: '白桦林 1973 年 8 月 17 日 亲笔信 3 页 (加密)', author: '白桦林', time: '1973-08-17', board: '档案馆', url: 'page_05_bfs_archive.html#note', keywords: ['白桦', '白桦林', '1973', '8 月 17 日', '1973-08-17', '亲笔信', '上海', '哈尔滨', '萝北', '鹤北', '8 棵', '8 人', '8 个', '知青', '推进', '1999', '1999-12-31', '12.31', '12 月 31 日', '1973-08-17', '1952'] },
+  { id: 'private-board', title: '私人版 (加密 - 1999-12-31 23:59)', author: '寒江独钓', time: '1999-12-31 23:59', board: '私人版', url: 'page_06_underground.html', keywords: ['1999', '1999-12-31', '12 月 31 日', '12.31', '23:59', '寒江独钓', '白桦林', '白桦', '鹤北', '北山工事', '林德厚', '老林', '1973', '8 月 17 日', '1973-08-17', '8 棵', '知青', '1999-08-17', '1999 年 8 月 17 日', '1999 年 12 月 31 日', '寻子', '地下工事', '小溪', '白桦树', '8 棵白桦', '8 棵白桦树'] },
+  { id: 'bjb-threads', title: '萝北版 8 个主题', author: '萝北阿婆', time: '1999-2007', board: '萝北版', url: 'page_04_bbs_board_lubei.html', keywords: ['萝北', '鹤北', '白桦', '白桦林', '白桦嫂', '1998', '12 月', '8 棵', '8 棵白桦', '8 棵白桦树', '1998-12', '寻人节', '知青', '1973', '8 月 17 日', '1973-08-17'] },
+];
+
+function doSearch() {
+  const q = document.getElementById('qInput').value.trim();
+  const results = document.getElementById('results');
+  if (!q) {
+    results.innerHTML = '<p style="text-align:center; color:#888; padding:30px;">请输入关键词</p>';
+    return;
+  }
+  const matches = DATA.filter(d => d.keywords.some(k => k.toLowerCase().includes(q.toLowerCase()) || q.toLowerCase().includes(k.toLowerCase())));
+  if (matches.length === 0) {
+    results.innerHTML = `<p style="text-align:center; color:#888; padding:30px;">没有找到与 "${q}" 相关的内容</p>`;
+    return;
+  }
+  results.innerHTML = matches.map(m => `
+    <div class="result-item">
+      <a href="${m.url}" class="result-title">${m.title}</a>
+      <div class="result-meta">作者: <b>${m.author}</b> · ${m.time} · 板块: ${m.board}</div>
+      <div class="result-preview">匹配关键词: <span class="highlight">${m.keywords.filter(k => k.toLowerCase().includes(q.toLowerCase()) || q.toLowerCase().includes(k.toLowerCase())).join(' / ')}</span></div>
+    </div>
+  `).join('');
+}
+
+// 读取 ?q= 参数
+const urlQ = new URLSearchParams(location.search).get('q');
+if (urlQ) {
+  document.getElementById('qInput').value = urlQ;
+  doSearch();
+}
+</script>
+</body>
+</html>

@@ -3,71 +3,203 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>失联 - 一台旧 MacBook 的最后线索</title>
-<meta name="description" content="ARG 网页解谜 - 30 分钟 - 找你的双胞胎姐姐">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231a1a2e'/%3E%3Ctext x='50' y='72' font-size='68' font-weight='bold' text-anchor='middle' fill='%23ff6b9d' font-family='Arial,sans-serif'%3E雪%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/base.css">
+<title>2049年的一封信 - 起点</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23f5f5f0'/%3E%3Ctext x='50' y='78' font-size='72' font-weight='bold' text-anchor='middle' fill='%231a1a1a' font-family='KaiTi,serif'%3E信%3C/text%3E%3C/svg%3E">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "SimSun", "宋体", "Microsoft YaHei", sans-serif;
+  background: #fdfcf7;
+  color: #2a2a2a;
+  line-height: 1.8;
+  padding: 0;
+  min-height: 100vh;
+}
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+.pretitle {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #888;
+  text-align: center;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 48px;
+  text-align: center;
+  font-weight: normal;
+  letter-spacing: 8px;
+  margin: 30px 0 12px;
+  color: #1a1a1a;
+}
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #d0d0c8;
+}
+.story {
+  font-size: 16px;
+  line-height: 2.2;
+  color: #2a2a2a;
+}
+.story p {
+  margin: 16px 0;
+  text-indent: 2em;
+}
+.story .dialog {
+  text-indent: 0;
+  color: #444;
+  font-style: italic;
+  border-left: 3px solid #c00;
+  padding: 8px 16px;
+  margin: 16px 0;
+  background: #fef5f5;
+}
+.story .time {
+  text-indent: 0;
+  text-align: right;
+  color: #888;
+  font-size: 14px;
+  margin-top: 40px;
+}
+.warn {
+  background: #fff8e0;
+  border: 1px solid #f0d870;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 30px 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #6a5500;
+}
+.warn h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.meta {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid #d0d0c8;
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.btn {
+  display: block;
+  margin: 50px auto 0;
+  padding: 16px 60px;
+  background: #1a1a1a;
+  color: #fdfcf7;
+  border: none;
+  font-family: inherit;
+  font-size: 18px;
+  letter-spacing: 8px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.btn:hover { background: #c00; letter-spacing: 12px; }
+.hint {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 16px;
+}
+</style>
 </head>
-<body class="story-intro">
+<body>
+<div class="page">
 
-<div class="story-wrap">
-  <div class="story-meta">
-    <div class="story-meta-row"><span>案件编号</span><span>NO. 2024-0815-MISS</span></div>
-    <div class="story-meta-row"><span>立案日期</span><span>2024 年 8 月 15 日</span></div>
-    <div class="story-meta-row"><span>管辖单位</span><span>武阳市公安局刑侦支队</span></div>
-    <div class="story-meta-row"><span>状态</span><span class="status-warn">失联 / 未结案</span></div>
+  <div class="pretitle">作 品 · 序 章</div>
+  <h1>2049 年的一封信</h1>
+  <div class="subtitle">— 一封穿越 25 年的信 —</div>
+
+  <div class="story">
+
+    <p>你叫 <strong>李寻</strong>。</p>
+
+    <p>25 岁。今年 6 月刚从师范大学中文系毕业, 没有考研, 也没有考公. 你在省城一家小出版社做实习编辑, 月薪 3500, 租住在城中村的隔断间里.</p>
+
+    <p>你没有朋友. 不是因为内向, 是因为你总觉得自己不属于 2024 年. 你喜欢用钢笔写信, 喜欢去旧书市场淘 1990 年代的杂志, 喜欢一个人坐在河边发呆到半夜. 你的手机是 2018 年的 iPhone X, 屏幕碎了两次都没换.</p>
+
+    <p>你的爸爸叫 <strong>李守正</strong>. 曾经是鹤岗市公安局的刑警. 1999 年你出生那年, 你妈妈在鹤岗生你, 难产, 没救回来. 你爸爸一个人把你带大. 2009 年你 10 岁那年, 你爸爸在一次出警中负伤, 提前办了病退, 回到鹤岗老家的旧房子住. 从那以后, 他几乎不出门.</p>
+
+    <p>你从小就觉得你爸爸很神秘. 他不说话, 不看电视, 不跟邻居往来. 他每天做的事情是: 看书, 写字, 偶尔去邮局. 你的学费, 生活费, 都从他邮政储蓄那个折子里来. 你 18 岁高考那年去省城上学, 走的时候他没送, 只是在你床头放了一张纸条: <em>"照顾好自己. 爸爸永远在."</em></p>
+
+    <p>2024 年 5 月 11 日, 距离你毕业还有 1 个月. 你在省城接到鹤岗老家邻居张叔的电话: "寻子, 你爸有半个月没出门了. 我敲他门他不开."</p>
+
+    <p>你连夜坐火车回鹤岗. 钥匙开门, 屋里灯没开. 旧房子的味道扑面而来, 是你 25 年来最熟悉的味道.</p>
+
+    <p class="dialog">"爸? 爸! 我回来了."</p>
+
+    <p>没人应.</p>
+
+    <p>你找遍了整个房子, 三室一厅, 旧家具, 旧电视, 旧书桌, 满墙旧报纸. 没有你爸爸的影子.</p>
+
+    <p>但是. 书桌上, 整整齐齐摆着三样东西:</p>
+
+    <p>一本没有写完的笔记本, 翻开着, 是你爸那手熟悉又陌生的字.</p>
+    <p>一封没写完的信, 收件人写的是你的名字.</p>
+    <p>一个旧信封, 上面贴着一张 1999 年的邮票, 邮戳日期是 <strong>1999 年 12 月 31 日</strong>, 收件地址: <strong>鹤岗市萝北县鹤北镇**号, 李寻 (收)</strong>.</p>
+
+    <p>你把信封翻过来, 背面写着: <em>"我儿子 25 岁生日那天再拆."</em></p>
+
+    <p>你爸爸今年 5 月 11 日, 应该 50 岁. 你现在 25 岁, 25 年前, 正好是 1999 年.</p>
+
+    <p>他给你写的这封信, 在抽屉里, 整整躺了 <strong>25 年</strong>.</p>
+
+    <p>但信封是新的, 是这半个月之内才放上去的. 也就是说, 在 2024 年 4 月底 5 月初的某个时间, 你爸爸把这封信从某个地方拿出来, 放到了书桌上, 跟那本没写完的笔记本和那封没写完的信放在一起.</p>
+
+    <p>然后他就消失了.</p>
+
+    <p>今天是 2024 年 5 月 12 日. 你的 25 岁生日是 2024 年 8 月 17 日.</p>
+
+    <p>信封上写的是"我儿子 25 岁生日那天再拆". 你不知道这封信里到底写了什么. 你也不敢现在拆. 你觉得你爸爸一定不希望你提前拆.</p>
+
+    <p>你拿起了那本没写完的笔记本, 翻到最后一页, 看到你爸写的一句话:</p>
+
+    <p class="dialog">"1999 年 12 月 31 日, 我在鹤北镇, 见到了一样东西. 现在我必须回去. 如果我回不来, 寻子, 你会找到的. 那些 1999 年的网友, 也许还记得我. 我当时用过一个网名: 寒江独钓. 去找到他们. 去论坛上, 去 1999 年那个叫'鹤岗故人'的老 BBS 看看. 你会找到的. 钥匙就在那里."</p>
+
+    <p>你合上笔记本.</p>
+
+    <p>你不知道 1999 年你爸爸在网上留下了什么. 你不知道他让你去找什么钥匙. 你不知道他到底去了哪里.</p>
+
+    <p>但你知道一件事: <strong>这封信不能提前拆. 你爸爸让你 25 岁生日那天拆, 一定有他的理由.</strong></p>
+
+    <p>你有 3 个月. 从 5 月 12 日到 8 月 17 日. 找到你爸爸, 或者找到他要你找的东西.</p>
+
   </div>
 
-  <h1 class="story-h1">失 联</h1>
-  <h2 class="story-h2">— 一台旧 MacBook 的最后线索 —</h2>
-
-  <div class="story-body">
-    <p>你叫 <strong>江晚</strong>。22 岁。今年刚从师范大学毕业。</p>
-    <p>你有一个双胞胎姐姐，叫 <strong>江雪</strong>。你们长得很像，但性格相反：你是那种会按时回消息的人，她不是。</p>
-    <p>2024 年 5 月 11 日晚上 9 点 17 分，姐姐给你发了最后一条微信：</p>
-    <blockquote class="story-quote">
-      「晚晚，我找到工作了。明天入职。晚安。」
-    </blockquote>
-    <p>你回了一个「🎉 恭喜姐姐！」。</p>
-    <p>然后你就再也没见过她。</p>
-    <p>她没去新公司上班。她的手机、身份证、银行卡，全都在合租屋里，整整齐齐放好，像是出门前特意摆的。</p>
-    <p>警方查了 3 个月，没有进展。最后给你的结案报告只有一行：<em>「失踪超过 3 个月，暂未发现刑事案件证据」</em>。</p>
-    <p>但你知道她不会无缘无故消失。</p>
-    <p>上周，你整理她租的房间时，找到了这台 <strong>2015 款 MacBook Air</strong>。屏幕碎了，外壳很旧，但还能开机。</p>
-    <p>密码是 4 位数字。</p>
-    <p>你试过她的生日。试过你的生日。试过妈妈、爸爸、家里狗的生日。</p>
-    <p>都不对。</p>
-    <p>你还有一个线索：她大学时的网名叫 <strong>小雪</strong>。她把这个名字写在了这台 MacBook 里的一个加密文件夹上，文件夹就叫「小雪」。</p>
-    <p>你知道答案就在那里面。</p>
+  <div class="warn">
+    <h3>📋 玩法规则</h3>
+    本作品为 <strong>原创 ARG 网页解谜</strong>. 灵感来自谜页集 6 大热作.<br>
+    1. <strong>游戏时长 60-90 分钟</strong>, 难度: 普通<br>
+    2. 所有密码都是 <strong>真实语义</strong> 推理: 日期, 姓名, 地名, 拼音首字母<br>
+    3. 所有线索都在 <strong>页面上</strong>, 无需 F12 查源码<br>
+    4. <strong>不显示</strong> 血腥, 暴力, 惊悚画面. 主题是悬疑 + 怀旧<br>
+    5. 5 个不同结局, 至少 1 个需要满足全部 4 个前置条件才能看到<br>
+    6. 全部本地存储, 不上传任何数据
   </div>
 
-  <div class="story-rules">
-    <h3>📋 玩法</h3>
-    <ul>
-      <li>30-60 分钟。游戏里没有怪物, 只有你姐姐留下的痕迹。</li>
-      <li>密码都是 <strong>真实语义</strong> 的 (生日 / 名字 / 日期 / 数字含义)。</li>
-      <li>所有线索都在页面上, <strong>不需要 F12 查源码</strong>。</li>
-      <li>全部本地存储, 不会上传任何数据。</li>
-    </ul>
+  <p class="hint">提示: 你爸爸让你去 <strong>1999 年那个叫"鹤岗故人"的老 BBS</strong> 看看. 先从老 BBS 入口开始.</p>
+
+  <button class="btn" onclick="window.location.href='page_01_notebook.html'">继续</button>
+
+  <div class="meta">
+    <p>《2049 年的一封信》</p>
+    <p>灵感来自谜页集 (miyeji.cn) 6 大热作</p>
+    <p>鹤岗 / 1999-2024 / 25 年</p>
   </div>
 
-  <div class="story-cta">
-    <button class="story-btn" id="start-btn">我已准备好, 开机</button>
-    <p class="story-cta-hint">提示: 密码线索藏在姐姐留下的所有东西里. 仔细看每一段文字.</p>
-  </div>
-
-  <div class="story-credit">
-    <p>《失联》是一个原创 ARG 网页解谜游戏</p>
-    <p>灵感来自谜页集 (miyeji.cn) 的 6 大热作</p>
-  </div>
 </div>
-
-<script>
-  document.getElementById("start-btn").addEventListener("click", () => {
-    // 跳到 MacBook 锁屏
-    window.location.href = "lock.html";
-  });
-</script>
-
 </body>
 </html>

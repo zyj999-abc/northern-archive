@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>私人版 (密码) - 鹤岗故人</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23f5f5f0'/%3E%3Ctext x='50' y='78' font-size='72' font-weight='bold' text-anchor='middle' fill='%231a1a1a' font-family='KaiTi,serif'%3E信%3C/text%3E%3C/svg%3E">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "SimSun", "宋体", "Microsoft YaHei", sans-serif; background: #1a1a1a; color: #d0d0c0; font-size: 14px; line-height: 1.8; }
+.wrap { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+.locked { text-align: center; padding: 100px 20px; }
+.locked h1 { font-size: 24px; color: #c00; letter-spacing: 4px; margin-bottom: 30px; }
+.locked p { color: #888; font-size: 14px; max-width: 500px; margin: 0 auto 30px; }
+.locked input {
+  background: #000;
+  border: 1px solid #444;
+  color: #d0d0c0;
+  padding: 12px 16px;
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 16px;
+  width: 320px;
+  text-align: center;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+.locked input:focus { border-color: #c00; outline: none; }
+.locked button {
+  background: #c00;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 4px;
+  border-radius: 2px;
+}
+.locked button:hover { background: #900; }
+.hint { color: #666; font-size: 12px; margin-top: 20px; }
+.error { color: #c00; font-size: 13px; margin-top: 12px; min-height: 18px; }
+.post { background: #0e0e0e; border: 1px solid #333; padding: 30px; margin-bottom: 20px; }
+.post-time { color: #888; font-size: 12px; font-family: monospace; margin-bottom: 8px; }
+.post-body { color: #d0d0c0; font-size: 15px; line-height: 2; }
+.post-body p { margin: 16px 0; }
+.post-body .file { color: #4a90e2; text-decoration: underline; cursor: pointer; }
+.post-body .warning { color: #c00; }
+.post-body .sign { text-align: right; color: #888; margin-top: 30px; }
+.replies { background: #0a0a0a; border: 1px solid #333; padding: 20px; margin-top: 20px; }
+.reply { padding: 16px 0; border-bottom: 1px dashed #333; }
+.reply:last-child { border-bottom: none; }
+.reply-head { color: #888; font-size: 12px; margin-bottom: 8px; }
+.back { text-align: center; margin-top: 30px; }
+.back a { color: #4a90e2; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div id="lockView" class="locked">
+    <h1>🔒 私人版</h1>
+    <p>本版块存放 <strong>1999-12-31 23:59</strong> 之后注册用户发布的加密内容. 普通用户无法查看.<br>
+    如需访问, 请输入完整密码.</p>
+    <input type="text" id="pwInput" placeholder="请输入密码" onkeydown="if(event.key==='Enter')submitPw()">
+    <br>
+    <button onclick="submitPw()">进入</button>
+    <div class="error" id="err"></div>
+    <p class="hint">
+      💡 你爸爸的精华帖里给了密码: <strong style="color:#c00;">李寻白 + 1999-08-17</strong><br>
+      格式: 名字 + 妈妈的姓 + 生日 (yyyy-mm-dd)
+    </p>
+  </div>
+
+  <div id="contentView" style="display:none;">
+    <p style="color:#c00; text-align:center; margin-bottom:30px;">
+      ⚠️ 警告: 以下内容包含 1973-2024 年鹤北镇部分事件. 部分内容可能引起不适.
+    </p>
+
+    <div class="post">
+      <div class="post-time">[ 1999-12-31 23:59:47 ] 发帖人: 寒江独钓 (uid: 047)</div>
+      <div class="post-body">
+
+        <p>我是李守正. 鹤岗市公安局萝北县鹤北镇派出所.</p>
+
+        <p>今天夜里, 我和老林去了鹤北镇后山. 老林下去了, 没上来. 我在地下工事里, 找到了一些东西. 我必须把今天的事记下来. 因为我不知道, 我还能活多久.</p>
+
+        <p>地下工事里有 3 个房间.</p>
+
+        <p>第一个房间是空的. 但墙上有一行日文, 还有一行中文, 是用刀刻的:</p>
+        <p class="warning">"1945 年 8 月 15 日, 关东军第 126 师团工兵队, 撤离前焚毁. 焚毁原因: 有人醒不过来."</p>
+
+        <p>第二个房间有一张桌子, 桌子上放着一本笔记本. 笔记本是日文的, 大部分我不懂, 但有一页夹着一张照片. 照片上有 3 个人, 穿日本军服. 照片背面写着日文, 我只认识几个汉字: <strong>"白"</strong>, <strong>"1973"</strong>, <strong>"北山"</strong>.</p>
+
+        <p>第三个房间我没进去. 因为门是锁的. 锁是新的. 不是日本锁, 是 1990 年代的国产锁.</p>
+
+        <p>我在第二个房间里, 发现地板上刻着几行字, 是用刀刻的, 像是 1970 年代刻的:</p>
+        <p class="warning">
+          "我是白桦林, 1973 年下乡到鹤北. 我被人骗到后山. 我出不去. 他们在研究一种东西. 用我. 我能活到 1975 年. 后来我活了下来. 我没死. 我在第三个房间里. 进来的人, 请把我的事记下来. 谢谢. ——白桦林 1975 年 8 月 17 日"
+        </p>
+
+        <p>我看到这行字, 当时全身都凉了. 1973 年, 一个叫白桦林的女知青, 被骗到这里. 1975 年 8 月 17 日, 她还活着, 而且她在第三个房间.</p>
+
+        <p>我摸了摸第三个房间的门. 门后面, 有人在哭.</p>
+
+        <p>但我打不开门. 钥匙, 我没有.</p>
+
+        <p>我走之前, 把笔记本藏在了第二个房间的桌子抽屉里. 我没敢拿走. 因为我不知道, 拿走笔记本, 会不会触发什么.</p>
+
+        <p>林哥是晚上 11 点 50 分下去的. 我在工事里待了 4 个小时, 没找到他. 但我听到了第三个房间门后面的哭声. 那个哭声, 我一听就知道, 是林哥. 那个调子, 跟 1985 年他在哈尔滨, 唱《小白杨》的时候, 调子是一样的.</p>
+
+        <p>我爬出来的时候, 雪已经停了. 山上很安静. 我突然明白, 为什么林哥要在 1999 年最后一天下去. 他不是想见"她". 他是想让"她" 听到他的声音. 他知道, 只要他的声音到了第三个房间, 那个房间的门, 就会为他开.</p>
+
+        <p>他做到了. 林哥在第三个房间. 跟"她"在一起.</p>
+
+        <p>我没有告诉任何人. 我把山封了, 回去写报告. 报告被县里扣了. 我说我要上访, 县里说, 你的编制还要不要? 你的儿子 1999 年 8 月 17 日刚出生, 你想让你的儿子 10 月 7 日去上学吗?</p>
+
+        <p>我沉默了.</p>
+
+        <p>从那以后, 我每年 10 月都会回鹤北一次, 在山上坐一晚. 听.</p>
+
+        <p>我从来没跟"她"说过话. 但我听得到, 她的心跳.</p>
+
+        <p>2009 年, 我负伤, 提前退休. 我回了鹤岗老家. 我开始写这份秘密. 我儿子 10 岁, 他在鹤北外婆家. 我跟他妈妈 (白桦林) 一样, 姓白, 名寻.</p>
+
+        <p>不是巧合. 我儿子, 是白桦林的孙子. 我妻子难产, 取了我妻子的姓.</p>
+
+        <p>寻子, 你看到这份贴, 已经是 2024 年 8 月之后了. 你 25 岁. 你的生日是 1999 年 8 月 17 日. 那一天, 是你妈妈在鹤北后山失踪的那一天. 也是你出生在鹤岗的那一天.</p>
+
+        <p>你的妈妈, 1973 年 8 月 17 日, 在鹤北, 被带走. 1975 年, 她在地下工事里活了下来. 1999 年 12 月 31 日, 老林为了她, 走了下去. 老林是她的男人. 在 1968 年下乡的时候.</p>
+
+        <p>现在 2024 年 5 月, 我要回去鹤北. 老林在第三个房间, 跟她说"他要来接班了". 她说"好".</p>
+
+        <p>我下去, 把门从里面锁上. 我不会出来. 寻子, 别来找我. 你到了 25 岁, 你会明白.</p>
+
+        <p>钥匙在 BBS 的 <a href="#" class="file" onclick="alert('文件: 1973-08-17-NOTE.pdf\n内容: 白桦林 1973 年亲笔信 3 页\n密码: 你的生日 (8 位)'); return false;">1973-08-17-NOTE.pdf</a> 里.</p>
+
+        <p>密码, 是你妈妈的生日. 1999 年 8 月 17 日. 8 位.</p>
+
+        <p class="sign">—— 寒江独钓 · 李守正 · 1999 年 12 月 31 日 23:59:47 · 鹤北镇后山</p>
+
+      </div>
+    </div>
+
+    <div class="replies">
+      <div class="reply">
+        <div class="reply-head">[ 2000-01-01 02:14:00 ] <b style="color:#c00;">老鹤</b> (站长) 回复:</div>
+        <p>守正, 我看到了. 我把这个贴加密了, 密码是"李寻白1999-08-17". 只有你儿子能解. 我也把这件事告诉了我儿子, 让他 2024 年去找你儿子.</p>
+      </div>
+      <div class="reply">
+        <div class="reply-head">[ 2008-01-01 14:23:00 ] <b style="color:#c00;">三哥</b> (技术) 回复:</div>
+        <p>老鹤走了, 我接了站. 这个贴, 2017 年 1 月 1 日, 我会把加密去掉, 让所有用户都能看到. 你不发, 真相会跟着你进棺材.</p>
+        <p>密码: 1999-08-17 (8 位, 寻子的生日). 我加到 2024 年 5 月 12 日的自动任务里. 那个时间, 他会看到这个贴.</p>
+      </div>
+      <div class="reply">
+        <div class="reply-head">[ 2024-05-12 03:14:00 ] <b style="color:#c00;">系统</b> 回复:</div>
+        <p style="color:#4a90e2;">[ 自动任务执行: 加密已解除, 帖子对所有用户开放. 三哥的遗嘱 (2023-12 去世). ]</p>
+      </div>
+    </div>
+
+    <div class="back">
+      <a href="page_02_bbs.html">← 返回 BBS 首页</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const CORRECT_PW = '李寻白1999-08-17';
+
+function submitPw() {
+  const pw = document.getElementById('pwInput').value.trim();
+  const err = document.getElementById('err');
+  if (pw === CORRECT_PW) {
+    document.getElementById('lockView').style.display = 'none';
+    document.getElementById('contentView').style.display = 'block';
+  } else {
+    err.textContent = '密码错误, 再想想. (提示: 你爸爸在精华帖里给过完整密码)';
+    document.getElementById('pwInput').value = '';
+  }
+}
+</script>
+</body>
+</html>
