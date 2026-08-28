@@ -1,58 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>结局 B · 升 城</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #000; color: #c0c0c0; font-family: "KaiTi", "楷体", serif; min-height: 100vh; padding: 60px 30px; }
-    .wrap { max-width: 700px; margin: 0 auto; }
-    h1 { color: #6b4f1d; font-size: 26px; text-align: center; margin-bottom: 8px; letter-spacing: 6px; opacity: 0; animation: rise 1.4s 0.3s forwards; }
-    .sub { color: #666; text-align: center; font-size: 13px; margin-bottom: 50px; letter-spacing: 3px; opacity: 0; animation: rise 1.4s 0.8s forwards; }
-    p { font-size: 15px; line-height: 2.4; margin-bottom: 16px; opacity: 0; animation: rise 1.2s forwards; }
-    .d1 { animation-delay: 2s; } .d2 { animation-delay: 4s; } .d3 { animation-delay: 6s; } .d4 { animation-delay: 8s; } .d5 { animation-delay: 10s; }
-    .epitaph { text-align: center; color: #888; font-size: 13px; margin-top: 60px; opacity: 0; animation: rise 1.2s 12s forwards; }
-    .epitaph .name { color: #fff; font-size: 16px; letter-spacing: 6px; }
-    .back { text-align: center; margin-top: 50px; opacity: 0; animation: rise 1.2s 14s forwards; }
-    .back a { color: #6b4f1d; text-decoration: none; padding: 10px 28px; border: 1px solid #6b4f1d; display: inline-block; }
-    .back a:hover { background: #6b4f1d; color: white; }
-    @keyframes rise { to { opacity: 1; } }
-  </style>
+<meta charset="UTF-8">
+<title>结局 B - 重新开始 - 北一档案 v2</title>
+<link rel="stylesheet" href="css/base.css">
+<style>
+body {
+  background: linear-gradient(180deg, #0e0e2c 0%, #1c2452 30%, #5d4f8a 60%, #4a90e2 100%);
+  min-height: 100vh;
+  color: #fff;
+  padding: 40px 20px;
+}
+.back-btn {
+  position: fixed; top: 20px; left: 20px;
+  background: rgba(255,255,255,0.2); color: #fff;
+  border: none; padding: 8px 16px; border-radius: 6px;
+  cursor: pointer; font-size: 14px;
+  backdrop-filter: blur(20px);
+}
+.ending-content {
+  max-width: 700px; margin: 60px auto;
+  background: rgba(30,30,30,0.85);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+}
+.ending-content h1 { font-size: 32px; margin-bottom: 12px; text-align: center; }
+.ending-content h2 { font-size: 18px; color: #ffbd2e; margin-top: 24px; margin-bottom: 8px; }
+.ending-content p { line-height: 1.8; margin: 10px 0; font-size: 15px; }
+.ending-content .end-tag {
+  display: inline-block; padding: 4px 14px;
+  background: #2196f3; color: #fff; border-radius: 16px;
+  font-size: 14px; margin-bottom: 20px;
+}
+.ending-actions { text-align: center; margin-top: 30px; }
+.ending-actions a { margin: 0 8px; }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>升 城</h1>
-    <div class="sub">— 结 局 B · 全 部 销 毁 —</div>
+<a href="index.html" class="back-btn">← 回到首页</a>
 
-    <p class="d1">2010 年 1 月 14 日凌晨 3 时，你在锅炉房烧了所有打印件。</p>
-    <p class="d1">烟很大。烧了 1 小时 14 分。</p>
+<div class="ending-content">
+  <h1>🤝 结局 B：重新开始</h1>
+  <div class="end-tag">好结局 · 合作</div>
 
-    <p class="d2">2010 年 6 月，你毕业。去了深圳。</p>
-    <p class="d2">2011 年 4 月，你结婚。2013 年你有了一个儿子。</p>
-    <p class="d2">你给他取名<strong>李北山</strong>。你没有告诉他为什么。</p>
+  <p>真相大白后，林昭没有选择停下来。</p>
 
-    <p class="d3">2019 年 10 月，你母亲（陈桂香）去世前 11 年忌日。</p>
-    <p class="d3">你父亲打电话说他"身体不行了"，要你"回来看一眼"。你没回。</p>
-    <p class="d3">2020 年 1 月 14 日，他死了。死在 2010 年你烧东西的那个锅炉房。</p>
-    <p class="d3">死因：心肌梗死。<br>旁边有<strong>1 本 1989 年 12 月 12 日 的北山屯购煤收据</strong>。</p>
+  <h2>新的开始</h2>
+  <p>"404 大神，谢谢你帮我们找到了真相。"林昭在论坛上发了一个新帖："我决定继续做 ARG 游戏，揭露更多像北一中学这样的黑暗角落。你愿意和我一起吗？"</p>
+  <p>你回复了一个"好"字。</p>
 
-    <p class="d4">2025 年 9 月，你的儿子李北山 12 岁。他在历史课上学到<strong>1959-1961</strong>。</p>
-    <p class="d4">回家问你：<em>"爸，我们家以前是不是北山屯的？"</em></p>
-    <p class="d4">你说：<em>"不知道。"</em></p>
-    <p class="d4">他看着你。<strong>他眼睛里是你奶奶 2008 年写那封信时的眼神。</strong></p>
+  <h2>新的案件</h2>
+  <p>几天后，林昭发来一个加密文件："我哥的电脑里还有一个隐藏文件夹，里面是他生前最后一个月的研究。文件名是'wyynlzdq2'。你有兴趣吗？"</p>
+  <p>你打开文件，发现是 50 多个 NGO 组织的名单和他们的资金流向。这些组织比北一中学的规模大得多。</p>
 
-    <p class="d5">2049 年，你的儿子也 19 岁。他会不会去档案馆？</p>
-    <p class="d5">他会不会查到<strong>2003-08-09</strong>那份"无异常发现"的拆迁说明？</p>
-    <p class="d5">他会不会在旧衣柜<strong>第三层</strong>找到什么？</p>
-    <p class="d5">你不知道。<br>你选择不知道。</p>
+  <h2>你们的下一步</h2>
+  <p>你们决定成立一个"ARG 调查组"，专门用游戏的方式揭露现实中的不公。</p>
+  <p>第一起案件，是关于某个城市的"失踪儿童"事件。</p>
 
-    <div class="epitaph">
-      <div class="name">你 烧 掉 了 一 切</div>
-      —— 除了他眼睛里的那个眼神。<br>
-      那个眼神，<strong>会传给下一个人</strong>。
-    </div>
+  <h3>🔓 通关条件</h3>
+  <p>已解锁: 结局 A、结局 B</p>
+  <p>待解锁: 结局 C、结局 D、结局 E</p>
 
-    <div class="back"><a href="index.html">再玩一次</a></div>
+  <div class="ending-actions">
+    <a href="index.html" class="btn">回到首页</a>
+    <a href="end_A_luntan.html" class="btn btn-secondary">结局 A</a>
+    <a href="end_C_jiaBei.html" class="btn btn-secondary">结局 C</a>
   </div>
+</div>
+
 </body>
 </html>

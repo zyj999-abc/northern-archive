@@ -1,0 +1,12 @@
+﻿node_modules/
+_v1_backup/
+test/real_play/real_play/
+test/real_play/*.log
+test/real_play/v2_shots/
+test/real_play/*.mjs
+test/real_play/*.html
+test/shots/
+test/*.log
+test/*.mjs
+package.json
+package-lock.json

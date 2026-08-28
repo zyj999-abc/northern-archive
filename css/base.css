@@ -1,54 +1,582 @@
-/* 北国档案 / Northern Archive - 全局样式 */
+/* Northern Archive v2 - 完整 CSS
+ * 学自: 谜页集 6 大热作
+ * 包含: iOS 锁屏 / macOS 桌面 / XP 风格 / 复古 BBS / 复古博客
+ */
+
+/* ========== 基础 ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: 100%; min-height: 100vh; font-family: "KaiTi", "楷体", "SimSun", serif; color: #2b2620; background: #f4ecd8; }
-body { background: linear-gradient(180deg, #f4ecd8 0%, #e8dec0 100%); }
+html, body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  color: #1d1d1f;
+  background: #f5f5f7;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: #0066cc; text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-/* === 通用 === */
-.container { max-width: 880px; margin: 40px auto; padding: 0 20px; }
-.scanlines { position: fixed; inset: 0; background: linear-gradient(rgba(255,255,255,0) 50%, rgba(0,0,0,0.05) 50%); background-size: 100% 2px; pointer-events: none; z-index: 9999; opacity: 0.3; }
+/* ========== 1. iOS 锁屏 (学自"找到他的情人") ========== */
+.ios-lock {
+  width: 375px;
+  height: 667px;
+  margin: 30px auto;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 50px;
+  padding: 60px 20px 30px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1);
+  user-select: none;
+  overflow: hidden;
+}
+.ios-statusbar {
+  position: absolute;
+  top: 20px; left: 30px; right: 30px;
+  display: flex; justify-content: space-between; align-items: center;
+  color: #fff; font-size: 14px; font-weight: 600;
+}
+.ios-time { font-size: 80px; color: #fff; text-align: center; margin: 30px 0; font-weight: 200; }
+.ios-date { color: #fff; text-align: center; font-size: 18px; margin-bottom: 20px; opacity: 0.95; }
+.ios-pin-dots {
+  display: flex; justify-content: center; gap: 18px; margin: 30px 0;
+}
+.ios-pin-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid #fff; transition: all 0.2s;
+}
+.ios-pin-dot.filled { background: #fff; }
+.ios-prompt { color: #fff; text-align: center; font-size: 16px; margin-bottom: 15px; opacity: 0.9; }
+.ios-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 0 30px;
+  margin-top: 25px;
+}
+.ios-key {
+  width: 75px; height: 75px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: #fff; font-size: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.15s;
+  font-weight: 300;
+  backdrop-filter: blur(10px);
+}
+.ios-key:hover { background: rgba(255,255,255,0.25); }
+.ios-key:active { background: rgba(255,255,255,0.4); transform: scale(0.95); }
+.ios-key.empty { background: transparent; pointer-events: none; }
+.ios-key.backspace { font-size: 22px; }
+.ios-home-btn {
+  width: 50px; height: 50px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  margin: 25px auto 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.ios-error {
+  color: #ff3b30; text-align: center; font-size: 14px;
+  margin-top: 12px; min-height: 18px;
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
 
-/* === 阅前声明 === */
-.decl { max-width: 720px; margin: 60px auto; padding: 50px 40px; background: #fdfaf0; border-top: 4px solid #6b4f1d; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-.decl h1 { color: #6b4f1d; font-size: 22px; margin-bottom: 6px; letter-spacing: 4px; }
-.decl .sub { color: #888; font-size: 12px; margin-bottom: 36px; font-family: monospace; }
-.decl ul { list-style: none; }
-.decl li { margin-bottom: 18px; line-height: 1.8; font-size: 14px; }
-.decl li strong { color: #6b4f1d; }
-.decl .meta { margin-top: 32px; padding-top: 18px; border-top: 1px dashed #c0a060; display: flex; justify-content: space-between; font-size: 12px; color: #888; font-family: monospace; }
-.start-btn { display: block; margin: 30px auto 0; padding: 12px 40px; background: #6b4f1d; color: white; border: none; cursor: pointer; font-size: 14px; letter-spacing: 3px; font-family: inherit; }
-.start-btn:hover { background: #8b6424; }
+/* iOS 桌面 */
+.ios-springboard {
+  width: 375px; min-height: 667px;
+  margin: 30px auto;
+  background: linear-gradient(135deg, #4a90e2 0%, #50e3c2 100%);
+  border-radius: 30px;
+  padding: 70px 20px 30px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.ios-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 14px;
+  padding: 10px;
+}
+.ios-app {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; transition: all 0.2s;
+}
+.ios-app:hover { transform: scale(1.05); }
+.ios-app-icon {
+  width: 60px; height: 60px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; color: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  margin-bottom: 6px;
+}
+.ios-app-name { color: #fff; font-size: 12px; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+.ios-dock {
+  position: absolute; bottom: 30px; left: 20px; right: 20px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 22px;
+  padding: 12px 15px;
+  display: flex; justify-content: space-around;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 1px rgba(0,0,0,0.2);
+}
+.ios-search {
+  position: absolute; top: 20px; left: 20px; right: 20px;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  color: #1d1d1f; font-size: 14px;
+  backdrop-filter: blur(20px);
+}
+.ios-search::placeholder { color: rgba(0,0,0,0.5); }
 
-/* === 档案馆登录 === */
-.archive-window { max-width: 480px; margin: 80px auto; background: #fdfaf0; border: 1px solid #6b4f1d; box-shadow: 4px 4px 0 #d4c2a0; }
-.archive-header { background: #6b4f1d; color: white; padding: 12px 20px; font-weight: bold; font-size: 14px; }
-.archive-body { padding: 30px; }
-.archive-body h2 { font-size: 18px; color: #6b4f1d; margin-bottom: 6px; }
-.archive-body .hint { font-size: 12px; color: #888; margin-bottom: 24px; font-family: monospace; }
-.field { margin-bottom: 18px; }
-.field label { display: block; font-size: 12px; color: #6b4f1d; margin-bottom: 4px; }
-.field input { width: 100%; padding: 8px 12px; border: 1px solid #c0a060; background: white; font-size: 14px; outline: none; font-family: inherit; }
-.field input:focus { border-color: #6b4f1d; }
-.err { color: #c0392b; font-size: 12px; min-height: 16px; margin-bottom: 12px; display: none; }
-.err.show { display: block; }
-.archive-btn { width: 100%; padding: 10px; background: #6b4f1d; color: white; border: none; font-size: 14px; cursor: pointer; font-family: inherit; letter-spacing: 2px; }
-.archive-btn:hover { background: #8b6424; }
-.archive-hint-tip { margin-top: 18px; padding-top: 14px; border-top: 1px dashed #d4c2a0; font-size: 11px; color: #888; }
+/* iOS app 颜色 */
+.bg-wechat { background: #1aad19; }
+.bg-sms { background: #4eb6e9; }
+.bg-album { background: #ffd23f; color: #333 !important; }
+.bg-instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+.bg-phone { background: #34c759; }
+.bg-note { background: #fff; color: #ff9500 !important; }
+.bg-mail { background: #007aff; }
+.bg-settings { background: #8e8e93; }
 
-/* === 搜索结果 === */
-.search-result { background: #fdfaf0; border: 1px solid #6b4f1d; padding: 20px; margin-bottom: 14px; }
-.search-result .meta { display: flex; justify-content: space-between; font-size: 11px; color: #888; margin-bottom: 8px; font-family: monospace; }
-.search-result h3 { color: #6b4f1d; font-size: 16px; margin-bottom: 8px; }
-.search-result p { font-size: 13px; line-height: 1.7; }
-.search-result .actions { margin-top: 12px; display: flex; gap: 8px; }
-.search-result .actions button { background: #6b4f1d; color: white; border: none; padding: 6px 14px; font-size: 12px; cursor: pointer; font-family: inherit; }
+/* iOS 弹窗 */
+.ios-modal-bg {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.ios-modal-bg.active { display: flex; }
+.ios-modal {
+  width: 270px; background: rgba(255,255,255,0.95);
+  border-radius: 14px; overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+.ios-modal-title {
+  padding: 16px; font-weight: 600; text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.ios-modal-content { padding: 16px; text-align: center; font-size: 14px; }
+.ios-modal-actions {
+  display: flex; border-top: 1px solid rgba(0,0,0,0.1);
+}
+.ios-modal-actions button {
+  flex: 1; padding: 12px; background: none; border: none;
+  font-size: 16px; color: #007aff; cursor: pointer;
+}
+.ios-modal-actions button:first-child {
+  border-right: 1px solid rgba(0,0,0,0.1); font-weight: 600;
+}
 
-/* === 频道页 === */
-.channel { background: #fdfaf0; border: 1px solid #6b4f1d; padding: 24px; margin-bottom: 14px; }
-.channel h2 { color: #6b4f1d; border-bottom: 2px solid #6b4f1d; padding-bottom: 8px; margin-bottom: 14px; font-size: 18px; }
-.channel p { font-size: 13px; line-height: 1.9; margin-bottom: 10px; }
-.channel .stamp { display: inline-block; background: #c0392b; color: white; padding: 2px 10px; font-size: 11px; margin-left: 8px; }
+/* ========== 2. macOS 桌面 (学自"灵异新版") ========== */
+.macos-desktop {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(180deg, #0e0e2c 0%, #1c2452 30%, #5d4f8a 60%, #f4a261 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, "SF Pro Display", sans-serif;
+}
+.macos-statusbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 24px;
+  background: rgba(0,0,0,0.3); color: #fff;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px; font-size: 13px; z-index: 10000;
+  backdrop-filter: blur(20px);
+}
+.macos-statusbar-left { display: flex; gap: 16px; }
+.macos-statusbar-right { display: flex; gap: 12px; align-items: center; }
+.macos-dock {
+  position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%);
+  background: rgba(255,255,255,0.2);
+  border-radius: 18px;
+  padding: 6px 8px;
+  display: flex; gap: 8px;
+  backdrop-filter: blur(20px);
+  z-index: 9000;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.macos-dock-item {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; cursor: pointer;
+  transition: all 0.2s;
+}
+.macos-dock-item:hover { transform: translateY(-8px) scale(1.1); }
+.macos-window {
+  position: absolute;
+  background: rgba(30,30,30,0.85);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  color: #fff;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  overflow: hidden;
+  min-width: 400px; min-height: 300px;
+}
+.macos-window-titlebar {
+  background: rgba(0,0,0,0.3);
+  padding: 8px 12px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  cursor: move;
+}
+.macos-btn {
+  width: 12px; height: 12px; border-radius: 50%;
+  display: inline-block; cursor: pointer;
+}
+.macos-btn-close { background: #ff5f56; }
+.macos-btn-min { background: #ffbd2e; }
+.macos-btn-max { background: #27c93f; }
+.macos-window-title { flex: 1; text-align: center; font-size: 13px; opacity: 0.9; }
+.macos-window-body { padding: 16px; max-height: 60vh; overflow-y: auto; }
+.macos-desktop-icon {
+  position: absolute;
+  width: 80px; text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.macos-desktop-icon:hover { background: rgba(255,255,255,0.1); border-radius: 8px; }
+.macos-desktop-icon-emoji {
+  font-size: 48px; line-height: 1;
+}
+.macos-desktop-icon-name {
+  color: #fff; font-size: 12px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  margin-top: 4px;
+  word-break: break-all;
+}
+.macos-notification {
+  position: fixed; top: 30px; right: 10px;
+  width: 360px; background: rgba(50,50,50,0.95);
+  color: #fff; border-radius: 12px; padding: 12px;
+  backdrop-filter: blur(20px);
+  z-index: 8000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.macos-notif-icon { font-size: 32px; flex-shrink: 0; }
+.macos-notif-body { flex: 1; }
+.macos-notif-title { font-weight: 600; font-size: 13px; }
+.macos-notif-content { font-size: 12px; opacity: 0.9; margin-top: 4px; }
+.macos-notif-actions { margin-top: 8px; display: flex; gap: 6px; }
+.macos-notif-actions button {
+  background: rgba(255,255,255,0.15); border: none; color: #fff;
+  padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;
+}
+.macos-notif-actions button:hover { background: rgba(255,255,255,0.25); }
 
-/* 退出/返回 */
-.nav-bar { position: sticky; top: 0; background: rgba(253,250,240,0.95); backdrop-filter: blur(4px); border-bottom: 1px solid #d4c2a0; padding: 8px 20px; display: flex; gap: 14px; align-items: center; z-index: 100; font-size: 12px; }
-.nav-bar a, .nav-bar button { color: #6b4f1d; text-decoration: none; background: transparent; border: none; cursor: pointer; font-family: inherit; }
-.nav-bar a:hover, .nav-bar button:hover { color: #c0392b; }
+/* macOS 笔记 app */
+.macos-notes {
+  display: flex; height: 100%;
+}
+.macos-notes-sidebar {
+  width: 180px; background: rgba(0,0,0,0.2);
+  padding: 8px; border-right: 1px solid rgba(255,255,255,0.1);
+}
+.macos-notes-sidebar-item {
+  padding: 8px 10px; border-radius: 6px; cursor: pointer;
+  font-size: 13px; color: #fff; opacity: 0.9;
+}
+.macos-notes-sidebar-item.active { background: rgba(255,255,200,0.3); }
+.macos-notes-sidebar-item:hover { background: rgba(255,255,255,0.1); }
+.macos-notes-content { flex: 1; padding: 16px; overflow-y: auto; }
+.macos-notes-entry {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 0; cursor: pointer;
+}
+.macos-notes-entry-date { color: #ffbd2e; font-size: 13px; font-weight: 600; }
+.macos-notes-entry-text { color: #fff; font-size: 13px; margin-top: 4px; line-height: 1.5; }
+
+/* macOS 论坛 app (灵异论坛风格) */
+.macos-forum {
+  display: flex; height: 100%;
+}
+.macos-forum-sidebar {
+  width: 200px; background: #2c2c2e;
+  padding: 12px; border-right: 1px solid rgba(255,255,255,0.1);
+}
+.macos-forum-section { color: #ff9500; font-size: 14px; font-weight: 600; margin: 12px 0 6px; }
+.macos-forum-board {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; color: #fff; font-size: 13px;
+  border-radius: 4px; cursor: pointer;
+}
+.macos-forum-board:hover { background: rgba(255,255,255,0.1); }
+.macos-forum-board.active { background: rgba(255,149,0,0.3); }
+.macos-forum-main { flex: 1; padding: 16px; overflow-y: auto; }
+.macos-forum-post {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 0; cursor: pointer;
+}
+.macos-forum-post:hover { background: rgba(255,255,255,0.05); }
+.macos-forum-post-title { color: #ff9500; font-size: 14px; font-weight: 600; }
+.macos-forum-post-meta { color: #aaa; font-size: 12px; margin-top: 4px; }
+.macos-forum-post-preview { color: #ddd; font-size: 13px; margin-top: 4px; }
+.macos-forum-search {
+  width: 100%; background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; padding: 6px 10px; border-radius: 6px;
+  font-size: 13px;
+}
+
+/* macOS 文件夹密码保护 */
+.macos-pw-modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  display: none; align-items: center; justify-content: center;
+  z-index: 9500;
+}
+.macos-pw-modal.active { display: flex; }
+.macos-pw-dialog {
+  background: rgba(40,40,40,0.95);
+  color: #fff; padding: 20px 24px;
+  border-radius: 12px; min-width: 320px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.macos-pw-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.macos-pw-desc { font-size: 13px; opacity: 0.8; margin-bottom: 12px; }
+.macos-pw-input {
+  width: 100%; background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; padding: 8px 10px; border-radius: 6px;
+  font-size: 14px; margin-bottom: 12px;
+}
+.macos-pw-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.macos-pw-actions button {
+  background: rgba(255,255,255,0.15); border: none; color: #fff;
+  padding: 6px 16px; border-radius: 6px; font-size: 13px; cursor: pointer;
+}
+.macos-pw-actions button.primary { background: #007aff; }
+
+/* ========== 3. 复古 BBS (学自陈雨彤/秉烛夜谈) ========== */
+.bbs {
+  background: #ffffe8;
+  border: 2px solid #888;
+  padding: 16px 24px;
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: "SimSun", "宋体", serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #000;
+}
+.bbs-header {
+  background: #4a76a8;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid #2e5894;
+  margin: -16px -24px 16px;
+}
+.bbs-nav { font-size: 13px; color: #555; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #ccc; }
+.bbs-nav a { color: #0066cc; margin-right: 12px; }
+.bbs-post {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+.bbs-post-title {
+  color: #0066cc;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.bbs-post-meta {
+  color: #888;
+  font-size: 12px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+.bbs-reply {
+  background: #f8f8f0;
+  border-left: 3px solid #4a76a8;
+  padding: 10px 14px;
+  margin: 6px 0;
+  font-size: 13px;
+}
+.bbs-reply-floor { color: #c00; font-weight: bold; font-size: 12px; }
+.bbs-reply-meta { color: #888; font-size: 11px; margin: 4px 0; }
+.bbs-pagination { text-align: center; margin: 16px 0; font-size: 14px; }
+.bbs-pagination a { padding: 2px 6px; border: 1px solid #aaa; margin: 0 2px; }
+.bbs-pagination .current { background: #4a76a8; color: #fff; }
+
+/* ========== 4. 复古博客 (学自秘密花园 2009) ========== */
+.blog2009 {
+  background: #ffe;
+  background-image:
+    linear-gradient(rgba(255,200,200,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,200,200,0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 3px double #c9a;
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  font-family: "KaiTi", "STKaiti", "楷体", serif;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #603;
+}
+.blog2009-title {
+  font-size: 24px;
+  color: #c39;
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 2px 2px 0 #fff;
+}
+.blog2009-entry {
+  border-bottom: 2px dotted #c9a;
+  padding: 12px 0;
+  margin-bottom: 16px;
+}
+.blog2009-entry-date { color: #c39; font-weight: bold; font-size: 13px; }
+.blog2009-entry-text { color: #603; }
+.blog2009-marquee {
+  background: #fff;
+  border: 2px solid #c9a;
+  padding: 4px 8px;
+  margin: 8px 0;
+  font-size: 13px;
+  color: #c39;
+}
+.blog2009-cursor {
+  display: inline-block; width: 8px; height: 16px;
+  background: #c39; animation: blink 1s infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.blog2009-visitor {
+  background: #c39; color: #fff; padding: 2px 8px;
+  display: inline-block; font-size: 12px; border-radius: 3px;
+  margin: 8px 0;
+}
+
+/* ========== 5. 邮箱 (学自青苗) ========== */
+.email-app {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 900px;
+  margin: 20px auto;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.email-header {
+  background: #243a5a;
+  color: #fff;
+  padding: 12px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.email-header h2 { font-size: 16px; }
+.email-header-info { font-size: 12px; opacity: 0.8; }
+.email-list { border-top: 1px solid #eee; }
+.email-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.email-item:hover { background: #f8f8f8; }
+.email-item.unread { background: #fff8e0; font-weight: 600; }
+.email-item-icon { font-size: 18px; }
+.email-item-from { width: 140px; font-size: 13px; }
+.email-item-subject { flex: 1; font-size: 13px; color: #333; }
+.email-item-time { font-size: 12px; color: #888; width: 80px; }
+.email-body { padding: 20px; }
+.email-body p { margin: 8px 0; line-height: 1.7; }
+.email-body .meta { color: #888; font-size: 12px; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 12px; }
+
+/* ========== 6. 通用组件 ========== */
+.btn {
+  background: #0066cc; color: #fff; border: none;
+  padding: 8px 20px; border-radius: 6px; font-size: 14px;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-block;
+}
+.btn:hover { background: #0055aa; }
+.btn-secondary { background: #666; }
+.btn-danger { background: #c00; }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 11px; margin: 0 2px;
+}
+.tag-red { background: #ffe; color: #c00; border: 1px solid #fcc; }
+.tag-blue { background: #e8f0ff; color: #0066cc; border: 1px solid #bcd; }
+.tag-green { background: #efe; color: #060; border: 1px solid #bdb; }
+.tag-orange { background: #fff3e0; color: #c60; border: 1px solid #fdc; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+.center { text-align: center; }
+.muted { color: #888; font-size: 12px; }
+
+/* 通知/浮窗 */
+.toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.85); color: #fff; padding: 10px 20px;
+  border-radius: 20px; font-size: 13px; z-index: 99999;
+  animation: toastIn 0.3s, toastOut 0.3s 2.7s forwards;
+}
+@keyframes toastIn { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+@keyframes toastOut { to { transform: translate(-50%, 20px); opacity: 0; } }
+
+/* 文字雨 (青苗风格) */
+.text-rain-bg {
+  position: fixed; inset: 0; pointer-events: none;
+  z-index: 0; opacity: 0.6;
+}
+.text-rain-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+
+/* 警告弹窗 */
+.warning-popup {
+  position: fixed; inset: 0; background: #000;
+  z-index: 99999; display: none; align-items: center; justify-content: center;
+  flex-direction: column; color: #fff; text-align: center;
+  animation: fadeIn 0.5s;
+}
+.warning-popup.show,
+.warning-popup[style*="display: flex"] {
+  display: flex !important;
+}
+.warning-popup-content {
+  max-width: 600px; padding: 20px;
+}
+.warning-popup h1 { color: #c00; font-size: 36px; margin-bottom: 20px; }
+.warning-popup p { font-size: 16px; line-height: 1.8; margin: 8px 0; }
+.warning-popup button {
+  margin-top: 20px; padding: 12px 40px;
+  background: #c00; color: #fff; border: none;
+  font-size: 16px; cursor: pointer; border-radius: 4px;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* 端点结局 */
+.ending {
+  max-width: 700px; margin: 40px auto; padding: 40px;
+  background: #fff; border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.ending h1 { font-size: 32px; margin-bottom: 16px; color: #1d1d1f; }
+.ending .end-tag {
+  display: inline-block; padding: 4px 16px;
+  background: #4a76a8; color: #fff; border-radius: 16px;
+  font-size: 14px; margin-bottom: 20px;
+}
+.ending p { font-size: 16px; line-height: 1.8; margin: 12px 0; color: #333; }
+.ending .end-image {
+  font-size: 80px; margin: 30px 0;
+}
+.ending .end-actions { margin-top: 30px; }
+.ending .end-actions a { margin: 0 8px; }
