@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacBook 桌面 - 失联</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231a1a2e'/%3E%3Ctext x='50' y='72' font-size='68' font-weight='bold' text-anchor='middle' fill='%23ff6b9d' font-family='Arial,sans-serif'%3E%E9%9B%AA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+
+<div class="mac-desktop">
+  <!-- 顶部菜单栏 -->
+  <div class="mac-menubar">
+    <div class="mac-menubar-left">
+      <span class="mac-menubar-item apple">🍎</span>
+      <span class="mac-menubar-item bold">访达</span>
+      <span class="mac-menubar-item">文件</span>
+      <span class="mac-menubar-item">编辑</span>
+      <span class="mac-menubar-item">显示</span>
+      <span class="mac-menubar-item">前往</span>
+      <span class="mac-menubar-item">窗口</span>
+      <span class="mac-menubar-item">帮助</span>
+    </div>
+    <div class="mac-menubar-right">
+      <span id="macBattery">100%</span>
+      <span>🔋</span>
+      <span>📶</span>
+      <span id="macClock">12:00</span>
+      <span id="macDate2">2024/8/15</span>
+    </div>
+  </div>
+
+  <!-- 系统通知 -->
+  <div class="mac-notification" id="notif" style="display:none;">
+    <div class="mac-notif-icon">📧</div>
+    <div class="mac-notif-body">
+      <div class="mac-notif-title">未读邮件</div>
+      <div class="mac-notif-content" id="notifContent">1 封新邮件 - 发件人: 江雪<br>主题: 找到我</div>
+    </div>
+    <button class="mac-notif-close" onclick="document.getElementById('notif').style.display='none'">×</button>
+  </div>
+
+  <!-- 桌面应用图标 -->
+  <div class="mac-icon-grid" style="margin-top:40px;">
+    <div class="mac-icon" onclick="openApp('wechat')">
+      <div class="mac-icon-emoji">💬</div>
+      <div class="mac-icon-name">微信</div>
+    </div>
+    <div class="mac-icon" onclick="openApp('mail')">
+      <div class="mac-icon-emoji">📧</div>
+      <div class="mac-icon-name">邮件</div>
+    </div>
+    <div class="mac-icon" onclick="openApp('notes')">
+      <div class="mac-icon-emoji">📝</div>
+      <div class="mac-icon-name">备忘录</div>
+    </div>
+    <div class="mac-icon" onclick="openApp('browser')">
+      <div class="mac-icon-emoji">🌐</div>
+      <div class="mac-icon-name">浏览器</div>
+    </div>
+    <div class="mac-icon" onclick="openApp('xhs')">
+      <div class="mac-icon-emoji">📕</div>
+      <div class="mac-icon-name">小红书</div>
+    </div>
+    <div class="mac-icon" onclick="openApp('files')">
+      <div class="mac-icon-emoji">📁</div>
+      <div class="mac-icon-name">小雪</div>
+    </div>
+  </div>
+
+  <!-- 窗口容器: 备忘录 -->
+  <div class="mac-window" id="winNotes" style="top: 60px; left: 50px; width: 600px; height: 480px; display:none;">
+    <div class="mac-window-titlebar">
+      <span class="mac-btn mac-btn-close" onclick="closeApp('notes')"></span>
+      <span class="mac-btn mac-btn-min"></span>
+      <span class="mac-btn mac-btn-max"></span>
+      <span class="mac-window-title">备忘录</span>
+    </div>
+    <div class="app-notes">
+      <div class="app-notes-sidebar">
+        <div class="app-notes-sidebar-item active" data-cat="today" onclick="switchNotes('today', this)">📌 今天</div>
+        <div class="app-notes-sidebar-item" data-cat="recent" onclick="switchNotes('recent', this)">📋 最近 30 天</div>
+        <div class="app-notes-sidebar-item" data-cat="old" onclick="switchNotes('old', this)">📜 旧日记</div>
+        <div class="app-notes-sidebar-item" data-cat="locked" onclick="switchNotes('locked', this)">🔒 加密笔记 (1)</div>
+      </div>
+      <div class="app-notes-main" id="notesMain">
+        <!-- JS 渲染 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 窗口容器: 邮件 -->
+  <div class="mac-window" id="winMail" style="top: 70px; left: 80px; width: 700px; height: 460px; display:none;">
+    <div class="mac-window-titlebar">
+      <span class="mac-btn mac-btn-close" onclick="closeApp('mail')"></span>
+      <span class="mac-btn mac-btn-min"></span>
+      <span class="mac-btn mac-btn-max"></span>
+      <span class="mac-window-title">邮件 - jiangxue@163.com</span>
+    </div>
+    <div class="app-browser" style="height: auto; flex: 1;">
+      <div style="background:#fff;height:100%;display:flex;">
+        <div style="width:200px;background:#f5f5f5;border-right:1px solid #ddd;overflow-y:auto;">
+          <div onclick="openMail(1)" style="padding:12px;border-bottom:1px solid #e0e0e0;cursor:pointer;background:#fff8e0;">
+            <div style="font-weight:600;font-size:13px;color:#1a1a1a;">江雪</div>
+            <div style="font-size:12px;color:#666;margin-top:2px;">找到我</div>
+            <div style="font-size:11px;color:#999;margin-top:2px;">5月11日</div>
+          </div>
+          <div onclick="openMail(2)" style="padding:12px;border-bottom:1px solid #e0e0e0;cursor:pointer;">
+            <div style="font-weight:600;font-size:13px;color:#1a1a1a;">武阳人事</div>
+            <div style="font-size:12px;color:#666;margin-top:2px;">面试通知: 5月13日</div>
+            <div style="font-size:11px;color:#999;margin-top:2px;">5月10日</div>
+          </div>
+          <div onclick="openMail(3)" style="padding:12px;border-bottom:1px solid #e0e0e0;cursor:pointer;">
+            <div style="font-weight:600;font-size:13px;color:#1a1a1a;">妈妈</div>
+            <div style="font-size:12px;color:#666;margin-top:2px;">这周回家吃饭吗</div>
+            <div style="font-size:11px;color:#999;margin-top:2px;">5月9日</div>
+          </div>
+        </div>
+        <div style="flex:1;padding:24px;overflow-y:auto;background:#fff;" id="mailContent">
+          <p style="text-align:center;color:#999;padding:50px 0;">选择一封邮件查看</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 窗口容器: 微信 -->
+  <div class="mac-window" id="winWechat" style="top: 50px; left: 100px; width: 700px; height: 500px; display:none;">
+    <div class="mac-window-titlebar">
+      <span class="mac-btn mac-btn-close" onclick="closeApp('wechat')"></span>
+      <span class="mac-btn mac-btn-min"></span>
+      <span class="mac-btn mac-btn-max"></span>
+      <span class="mac-window-title">微信</span>
+    </div>
+    <div class="app-wechat">
+      <div class="wechat-contacts" id="wechatContacts">
+        <!-- JS 渲染 -->
+      </div>
+      <div class="wechat-chat" id="wechatChat">
+        <div class="wechat-chat-header" id="wechatHeader">选择联系人</div>
+        <div class="wechat-chat-messages" id="wechatMessages">
+          <p style="text-align:center;color:#999;margin-top:50px;">选择一个联系人开始聊天</p>
+        </div>
+        <div class="wechat-chat-input" style="display:none;" id="wechatInput">
+          <input type="text" class="wechat-input" id="wechatText" placeholder="输入消息..." onkeydown="if(event.key==='Enter')sendWechat()">
+          <button class="wechat-send" onclick="sendWechat()">发送</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 窗口容器: 浏览器 -->
+  <div class="mac-window" id="winBrowser" style="top: 40px; left: 80px; width: 800px; height: 540px; display:none;">
+    <div class="mac-window-titlebar">
+      <span class="mac-btn mac-btn-close" onclick="closeApp('browser')"></span>
+      <span class="mac-btn mac-btn-min"></span>
+      <span class="mac-btn mac-btn-max"></span>
+      <span class="mac-window-title">Safari</span>
+    </div>
+    <div class="app-browser">
+      <div class="app-browser-bar">
+        <button onclick="browserBack()" style="background:#444;color:#fff;border:none;width:28px;height:24px;border-radius:4px;cursor:pointer;">‹</button>
+        <button onclick="browserForward()" style="background:#444;color:#fff;border:none;width:28px;height:24px;border-radius:4px;cursor:pointer;">›</button>
+        <input type="text" class="app-browser-url" id="browserUrl" value="https://www.zhihu.com" onkeydown="if(event.key==='Enter'){window.browserGo && browserGo();}">
+        <button onclick="browserGo()" style="background:#007aff;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px;">Go</button>
+      </div>
+      <div class="app-browser-tabs" id="browserTabs">
+        <div class="app-browser-tab active" data-tab="zhihu" onclick="switchTab('zhihu', this)">知乎</div>
+        <div class="app-browser-tab" data-tab="weibo" onclick="switchTab('weibo', this)">微博</div>
+        <div class="app-browser-tab" data-tab="search" onclick="switchTab('search', this)">搜索</div>
+      </div>
+      <div class="app-browser-content" id="browserContent">
+        <!-- JS 渲染 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 窗口容器: 小红书 -->
+  <div class="mac-window" id="winXhs" style="top: 60px; left: 80px; width: 480px; height: 500px; display:none;">
+    <div class="mac-window-titlebar">
+      <span class="mac-btn mac-btn-close" onclick="closeApp('xhs')"></span>
+      <span class="mac-btn mac-btn-min"></span>
+      <span class="mac-btn mac-btn-max"></span>
+      <span class="mac-window-title">小红书</span>
+    </div>
+    <div class="app-browser" style="height: 480px;">
+      <div class="xhs-page" style="height:100%;overflow-y:auto;">
+        <div style="background:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #f0f0f0;">
+          <div style="width:32px;height:32px;background:#ff2442;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;">小</div>
+          <input type="text" placeholder="搜索笔记 / 用户" style="flex:1;background:#f5f5f5;border:none;padding:8px 14px;border-radius:18px;font-size:13px;" id="xhsSearch">
+        </div>
+        <div id="xhsContent">
+          <!-- JS 渲染 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 窗口容器: 文件夹 (小雪 加密) -->
+  <div class="mac-window" id="winFiles" style="top: 60px; left: 200px; width: 600px; height: 460px; display:none;">
+    <div class="mac-window-titlebar">
+      <span class="mac-btn mac-btn-close" onclick="closeApp('files')"></span>
+      <span class="mac-btn mac-btn-min"></span>
+      <span class="mac-btn mac-btn-max"></span>
+      <span class="mac-window-title">📁 小雪</span>
+    </div>
+    <div class="app-finder">
+      <div class="finder-sidebar">
+        <div class="finder-sidebar-item active">📁 小雪</div>
+        <div class="finder-sidebar-item" style="opacity:0.5;cursor:default;">📂 工作</div>
+        <div class="finder-sidebar-item" style="opacity:0.5;cursor:default;">📂 学校</div>
+        <div class="finder-sidebar-item" style="opacity:0.5;cursor:default;">📂 照片</div>
+      </div>
+      <div class="finder-main" id="finderMain">
+        <div style="color:#aaa;font-size:13px;margin-bottom:12px;">文件夹内文件: 5 个 (1 个加密)</div>
+        <div class="finder-files">
+          <div class="finder-file" onclick="openFile('readme')">
+            <div class="finder-file-icon">📄</div>
+            <div class="finder-file-name" style="color:#fff;">README.txt</div>
+          </div>
+          <div class="finder-file" onclick="openFile('photo1')">
+            <div class="finder-file-icon">🖼️</div>
+            <div class="finder-file-name" style="color:#fff;">我们.jpg</div>
+          </div>
+          <div class="finder-file" onclick="openFile('photo2')">
+            <div class="finder-file-icon">🖼️</div>
+            <div class="finder-file-name" style="color:#fff;">小雪.jpg</div>
+          </div>
+          <div class="finder-file" onclick="openFile('song')">
+            <div class="finder-file-icon">🎵</div>
+            <div class="finder-file-name" style="color:#fff;">写给你的歌.mp3</div>
+          </div>
+          <div class="finder-file locked" onclick="openFile('truth')">
+            <div class="finder-file-icon">🔒</div>
+            <div class="finder-file-name" style="color:#fff;">真相.txt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 密码弹窗 (加密笔记 / 真相.txt) -->
+  <div class="mac-pw-modal" id="pwModal">
+    <div class="mac-pw-dialog">
+      <div class="mac-pw-title" id="pwTitle">🔒 请输入密码</div>
+      <div class="mac-pw-desc" id="pwDesc">此内容已加密，请输入密码解锁</div>
+      <input type="password" class="mac-pw-input" id="pwInput" placeholder="请输入密码" onkeydown="if(event.key==='Enter')submitPw()">
+      <div class="mac-pw-actions">
+        <button onclick="closePw()">取消</button>
+        <button class="primary" onclick="submitPw()">解锁</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 通用弹窗 -->
+  <div class="mac-modal" id="contentModal">
+    <div class="mac-modal-dialog">
+      <div class="mac-modal-header">
+        <div class="mac-modal-title" id="modalTitle">内容</div>
+        <button class="mac-modal-close" onclick="closeContent()">×</button>
+      </div>
+      <div class="mac-modal-body" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- 底栏 Dock -->
+  <div class="mac-dock">
+    <div class="mac-dock-item" onclick="openApp('wechat')" style="background:linear-gradient(135deg,#1aad19,#07c160);">💬</div>
+    <div class="mac-dock-item" onclick="openApp('mail')" style="background:linear-gradient(135deg,#007aff,#0055aa);">📧</div>
+    <div class="mac-dock-item" onclick="openApp('notes')" style="background:linear-gradient(135deg,#ffd23f,#ff9500);">📝</div>
+    <div class="mac-dock-item" onclick="openApp('browser')" style="background:linear-gradient(135deg,#fff,#ddd);">🌐</div>
+    <div class="mac-dock-item" onclick="openApp('xhs')" style="background:linear-gradient(135deg,#ff2442,#cc0022);">📕</div>
+    <div class="mac-dock-item" onclick="openApp('files')" style="background:linear-gradient(135deg,#9c27b0,#673ab7);">📁</div>
+  </div>
+</div>
+
+<script src="js/core.js"></script>
+</body>
+</html>
